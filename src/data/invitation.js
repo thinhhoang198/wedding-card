@@ -15,12 +15,12 @@ export const invitation = {
   groom: {
     name: 'Hoàng Đức Thịnh',
     shortName: 'Đức Thịnh',
-    role: 'Trưởng Nam', // Trưởng nam / Thứ nam / Út nam... (sửa nếu khác)
+    role: 'Út Nam', // Trưởng nam / Thứ nam / Út nam... (sửa nếu khác)
   },
   bride: {
     name: 'Nguyễn Cao Thùy Duyên',
     shortName: 'Thùy Duyên',
-    role: 'Út Nữ', // (sửa nếu khác)
+    role: 'Trưởng Nữ', // (sửa nếu khác)
   },
 
   // ---- Ngày cưới ---------------------------------------------------------
@@ -66,7 +66,8 @@ export const invitation = {
     venue: 'Cung Văn Hóa Hữu Nghị Việt - Xô',
     address: '91 Trần Hưng Đạo, Phường Cửa Nam, Thành phố Hà Nội',
     // Từ khoá để mở Google Maps (đã kiểm tra ra đúng địa điểm)
-    mapQuery: 'Cung Văn hóa Lao động Hữu nghị Việt Xô, 91 Trần Hưng Đạo, Hà Nội',
+    mapQuery:
+      'Cung Văn hóa Lao động Hữu nghị Việt Xô, 91 Trần Hưng Đạo, Hà Nội',
     welcomeTime: '17:30', // đón khách (placeholder — sửa lại giờ thật)
     startTime: '18:00', // khai tiệc (placeholder — sửa lại giờ thật)
     weekday: 'Chủ Nhật',
@@ -124,15 +125,25 @@ export const invitation = {
 
   // ---- Lời chúc mẫu (hiện khi Google Sheet chưa có dữ liệu) --------------
   sampleWishes: [
-    { name: 'Duy Khang', message: 'Chúc mừng ngày vui của hai bạn, trăm năm hạnh phúc bền lâu!' },
-    { name: 'Lan Chi', message: 'Đẹp đôi quá! Chúc hai bạn sống bên nhau đầu bạc răng long.' },
-    { name: 'Tuấn Anh', message: 'Mừng hạnh phúc hai bạn! Chúc gia đình nhỏ luôn đầy ắp tiếng cười.' },
+    {
+      name: 'Duy Khang',
+      message: 'Chúc mừng ngày vui của hai bạn, trăm năm hạnh phúc bền lâu!',
+    },
+    {
+      name: 'Lan Chi',
+      message: 'Đẹp đôi quá! Chúc hai bạn sống bên nhau đầu bạc răng long.',
+    },
+    {
+      name: 'Tuấn Anh',
+      message:
+        'Mừng hạnh phúc hai bạn! Chúc gia đình nhỏ luôn đầy ắp tiếng cười.',
+    },
   ],
 
   // ---- Lời cảm ơn cuối thiệp --------------------------------------------
   thankYou:
     'Sự hiện diện của quý khách là niềm vinh hạnh của gia đình chúng tôi!',
-}
+};
 
 // Nhãn tiêu đề các mục (dùng chung toàn thiệp)
 export const labels = {
@@ -147,4 +158,4 @@ export const labels = {
   timeline: { vi: 'Lịch Trình Ngày Cưới' },
   guestbook: { vi: 'Sổ Lưu Bút' },
   gift: { vi: 'Hộp Quà Mừng' },
-}
+};
