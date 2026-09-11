@@ -30,7 +30,10 @@ export const invitation = {
   photos: {
     hero: '/couple/hero.jpg', // ảnh lớn khung vòm ở đầu thiệp
     // 2 dải ảnh full-width điện ảnh (kèm câu chú thích)
-    band1: { src: '/couple/band-1.jpg', caption: 'Chuyện của chúng mình bắt đầu…' },
+    band1: {
+      src: '/couple/band-1.jpg',
+      caption: 'Chuyện của chúng mình bắt đầu…',
+    },
     band2: { src: '/couple/band-2.jpg', caption: 'Và mãi mãi về sau' },
     thankYou: '/couple/cam-on.jpg', // ảnh cuối, trước lời cảm ơn
     partyBg: '/couple/tiec-bg.jpg', // ảnh nền mờ sau mục Tiệc cưới + RSVP (ngang)
@@ -56,7 +59,7 @@ export const invitation = {
     },
     bride: {
       father: 'Ông: Nguyễn Cao Nguyên',
-      mother: 'Bà: Trần Thị Bích Tuyền',
+      mother: 'Bà: Trần Thị Ngọc Tuyền',
       address: '', // (tuỳ chọn) địa chỉ nhà gái
     },
   },
