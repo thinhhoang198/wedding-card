@@ -9,7 +9,7 @@ export default function Timeline({ data }) {
         <SectionTitle label={labels.timeline} bilingual={data.bilingual} />
       </Reveal>
 
-      <Reveal className="tl">
+      <Reveal className="tl" variant="left">
         {data.timeline.map((item, i) => (
           <div className="tl-row" key={i}>
             <div className="tl-time">{item.time}</div>

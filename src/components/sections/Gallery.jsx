@@ -57,7 +57,7 @@ export default function Gallery({ data }) {
         <SectionTitle label={labels.album} bilingual={data.bilingual} />
       </Reveal>
 
-      <Reveal>
+      <Reveal variant="zoom">
         <div className="cf" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
           <div className="cf-stage">
             {photos.map((src, i) => {
@@ -123,12 +123,12 @@ export default function Gallery({ data }) {
           border-radius: 14px;
           overflow: hidden;
           background: linear-gradient(135deg, var(--c-cream-2), #e3d2bd);
-          box-shadow: 0 14px 34px rgba(0,0,0,0.28);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.12);
           transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s, filter 0.45s;
           cursor: pointer;
         }
         .cf-item img { width: 100%; height: 100%; object-fit: cover; }
-        .cf-item.is-center { box-shadow: 0 20px 46px rgba(90,26,36,0.4); }
+        .cf-item.is-center { box-shadow: 0 12px 28px rgba(90,26,36,0.18); }
 
         .cf-arrow {
           position: absolute; top: 50%; transform: translateY(-50%);

@@ -6,7 +6,7 @@ export default function DressCode({ data }) {
   const dc = data.dressCode
   return (
     <section className="section" style={{ textAlign: 'center' }}>
-      <Reveal>
+      <Reveal variant="zoom">
         <SectionTitle label={labels.dressCode} bilingual={data.bilingual} />
         <p className="dc-note">{dc.note}</p>
         <div className="dc-colors">

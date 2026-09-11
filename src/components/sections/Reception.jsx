@@ -29,14 +29,14 @@ function MiniCalendar({ year, month, day }) {
   )
 }
 
-/** Thông tin tiệc cưới: giờ, lịch tháng, thêm vào lịch. */
-export default function Reception({ data }) {
-  const r = data.reception
+/** Thông tin tiệc cưới: địa điểm, giờ, lịch tháng, thêm vào lịch. */
+export default function Reception({ data, event }) {
+  const r = event
 
   const addToCalendar = () =>
     downloadICS({
-      title: `Tiệc cưới ${data.groom.shortName} & ${data.bride.shortName}`,
-      startISO: data.weddingDate.iso,
+      title: `Tiệc cưới ${data.groom.shortName} & ${data.bride.shortName} (${r.label})`,
+      startISO: r.iso,
       durationHours: 3,
       location: `${r.venue}, ${r.address}`,
       description: 'Trân trọng kính mời!',
@@ -48,7 +48,8 @@ export default function Reception({ data }) {
         <SectionTitle label={labels.reception} bilingual={data.bilingual} />
       </Reveal>
 
-      <Reveal className="panel rec">
+      <Reveal className="panel rec" variant="left">
+        <p className="rec-venue">{r.venue}</p>
         <p className="rec-lead">Tiệc cưới sẽ diễn ra vào lúc</p>
         <div className="when-date">
           <div className="wd-col"><span className="wd-top">{r.weekday}</span><strong>{r.startTime}</strong></div>
@@ -65,7 +66,7 @@ export default function Reception({ data }) {
         </div>
       </Reveal>
 
-      <Reveal>
+      <Reveal variant="right">
         <MiniCalendar year={r.year} month={r.month} day={r.day} />
         <div style={{ textAlign: 'center', marginTop: 20 }}>
           <button className="btn btn-outline" onClick={addToCalendar}>＋ Thêm vào lịch</button>
@@ -74,6 +75,7 @@ export default function Reception({ data }) {
 
       <style>{`
         .rec { text-align: center; }
+        .rec-venue { font-family: var(--f-serif); color: var(--c-primary); font-size: 1.3rem; margin: 0 0 12px; }
         .rec-lead { color: var(--c-ink-soft); margin: 0 0 14px; }
         .rec-times { display: flex; justify-content: center; gap: 28px; margin-top: 16px; font-family: var(--f-serif); color: var(--c-ink); }
         .rec-times b { color: var(--c-primary); }

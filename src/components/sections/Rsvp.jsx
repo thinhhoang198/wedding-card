@@ -5,8 +5,8 @@ import { openMap } from '../../utils/helpers'
 import { postToSheet } from '../../utils/sheet'
 
 /** Xác nhận tham dự: địa điểm + chỉ đường + form RSVP gửi Google Sheet. */
-export default function Rsvp({ data }) {
-  const r = data.reception
+export default function Rsvp({ data, event }) {
+  const r = event
   const [form, setForm] = useState({ name: '', side: 'Nhà trai', attend: 'Có', guests: '1' })
   const [status, setStatus] = useState('idle') // idle | sending | done
   const [hp, setHp] = useState('') // honeypot chống spam
@@ -18,7 +18,8 @@ export default function Rsvp({ data }) {
     if (hp) return // bot điền honeypot
     if (!form.name.trim()) return
     setStatus('sending')
-    await postToSheet(data.sheetEndpoint, 'rsvp', form)
+    // gửi kèm địa điểm tiệc đang chọn để biết khách dự Hà Nội hay Nha Trang
+    await postToSheet(data.sheetEndpoint, 'rsvp', { ...form, event: r.label })
     setStatus('done')
   }
 
@@ -28,14 +29,14 @@ export default function Rsvp({ data }) {
         <SectionTitle label={labels.rsvp} bilingual={data.bilingual} />
       </Reveal>
 
-      <Reveal className="panel venue">
+      <Reveal className="panel venue" variant="left">
         <p className="venue-lead">Tiệc cưới được tổ chức tại</p>
         <h3>{r.venue}</h3>
         <p className="venue-addr">{r.address}</p>
         <button className="btn btn-outline" onClick={() => openMap(r.mapQuery)}>📍 Chỉ đường</button>
       </Reveal>
 
-      <Reveal className="panel rsvp-form">
+      <Reveal className="panel rsvp-form" variant="right">
         {status === 'done' ? (
           <p className="thanks">Cảm ơn bạn đã xác nhận! 💌</p>
         ) : (

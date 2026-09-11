@@ -35,7 +35,7 @@ export default function Guestbook({ data }) {
         <SectionTitle label={labels.guestbook} bilingual={data.bilingual} />
       </Reveal>
 
-      <Reveal className="panel gb-form">
+      <Reveal className="panel gb-form" variant="zoom">
         <form onSubmit={submit}>
           <input
             placeholder="Tên của bạn"
@@ -60,7 +60,7 @@ export default function Guestbook({ data }) {
 
       <div className="gb-list">
         {wishes.map((w, i) => (
-          <Reveal className="gb-item" key={i}>
+          <Reveal className="gb-item" key={i} variant={i % 2 === 0 ? 'left' : 'right'}>
             <div className="gb-head">
               <b>{w.name}</b>
               {w.time ? <span className="gb-time">{w.time}</span> : null}

@@ -5,7 +5,11 @@ export default function ThankYou({ data }) {
   const { groom, bride, thankYou } = data
   return (
     <section className="section ty">
-      <Reveal>
+      <Reveal variant="zoom">
+        <div className="ty-photo pf">
+          <img src={data.photos.thankYou} alt="" onError={(e) => { e.currentTarget.style.opacity = 0 }} />
+          <span className="pf-hint">Ảnh cưới</span>
+        </div>
         <div className="ty-heart float" aria-hidden>♥</div>
         <p className="ty-msg">{thankYou}</p>
         <h3 className="ty-names">{groom.shortName} &amp; {bride.shortName}</h3>
@@ -14,6 +18,11 @@ export default function ThankYou({ data }) {
 
       <style>{`
         .ty { text-align: center; padding-bottom: calc(var(--gap) + 10px); }
+        .ty-photo {
+          width: min(260px, 66%); aspect-ratio: 1; margin: 0 auto 22px;
+          border-radius: 50%; border: 3px solid var(--c-accent);
+          box-shadow: 0 12px 26px rgba(90,26,36,0.2);
+        }
         .ty-heart {
           width: 54px; height: 54px; margin: 0 auto 18px; border-radius: 50%;
           background: var(--c-primary); color: var(--c-cream);

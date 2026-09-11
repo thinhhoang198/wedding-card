@@ -29,7 +29,7 @@ export default function GiftBox({ data }) {
         <SectionTitle label={labels.gift} bilingual={data.bilingual} />
       </Reveal>
 
-      <Reveal>
+      <Reveal variant="zoom">
         <button className="gift-box" onClick={() => setOpen(true)}>
           <span className="gift-emoji float">🎁</span>
           <span className="gift-hint">Nhấn để mở</span>

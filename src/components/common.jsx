@@ -15,14 +15,17 @@ export function SectionTitle({ label, bilingual }) {
   )
 }
 
-/** Bọc nội dung để fade/slide-in khi cuộn tới. */
-export function Reveal({ children, as: Tag = 'div', className = '', style }) {
+/**
+ * Bọc nội dung để hiện dần khi cuộn tới.
+ * variant: kiểu animation — 'up' (mặc định), 'left', 'right', 'zoom', 'fade'.
+ */
+export function Reveal({ children, as: Tag = 'div', className = '', style, variant = 'up' }) {
   const [ref, shown] = useReveal()
   return (
     <Tag
       ref={ref}
       style={style}
-      className={`reveal ${shown ? 'is-visible' : ''} ${className}`.trim()}
+      className={`reveal rv-${variant} ${shown ? 'is-visible' : ''} ${className}`.trim()}
     >
       {children}
     </Tag>

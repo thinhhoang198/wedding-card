@@ -16,11 +16,24 @@ export const invitation = {
     name: 'Hoàng Đức Thịnh',
     shortName: 'Đức Thịnh',
     role: 'Út Nam', // Trưởng nam / Thứ nam / Út nam... (sửa nếu khác)
+    photo: '/couple/chu-re.jpg', // ảnh chú rể — đặt vào public/couple/ (chưa có sẽ hiện khung trống)
   },
   bride: {
     name: 'Nguyễn Cao Thùy Duyên',
     shortName: 'Thùy Duyên',
     role: 'Trưởng Nữ', // (sửa nếu khác)
+    photo: '/couple/co-dau.jpg', // ảnh cô dâu — đặt vào public/couple/
+  },
+
+  // ---- Ảnh cưới rải khắp thiệp (triển lãm ảnh) --------------------------
+  // Đặt ảnh vào public/couple/. Chưa có ảnh sẽ hiện khung "Ảnh" placeholder.
+  photos: {
+    hero: '/couple/hero.jpg', // ảnh lớn khung vòm ở đầu thiệp
+    // 2 dải ảnh full-width điện ảnh (kèm câu chú thích)
+    band1: { src: '/couple/band-1.jpg', caption: 'Chuyện của chúng mình bắt đầu…' },
+    band2: { src: '/couple/band-2.jpg', caption: 'Và mãi mãi về sau' },
+    thankYou: '/couple/cam-on.jpg', // ảnh cuối, trước lời cảm ơn
+    partyBg: '/couple/tiec-bg.jpg', // ảnh nền mờ sau mục Tiệc cưới + RSVP (ngang)
   },
 
   // ---- Ngày cưới ---------------------------------------------------------
@@ -61,21 +74,41 @@ export const invitation = {
     lunar: 'Tức ngày 21 tháng 10 năm Bính Ngọ',
   },
 
-  // ---- Tiệc cưới (nhà hàng) ---------------------------------------------
-  reception: {
-    venue: 'Cung Văn Hóa Hữu Nghị Việt - Xô',
-    address: '91 Trần Hưng Đạo, Phường Cửa Nam, Thành phố Hà Nội',
-    // Từ khoá để mở Google Maps (đã kiểm tra ra đúng địa điểm)
-    mapQuery:
-      'Cung Văn hóa Lao động Hữu nghị Việt Xô, 91 Trần Hưng Đạo, Hà Nội',
-    welcomeTime: '17:30', // đón khách (placeholder — sửa lại giờ thật)
-    startTime: '18:00', // khai tiệc (placeholder — sửa lại giờ thật)
-    weekday: 'Chủ Nhật',
-    day: '29',
-    month: '11',
-    year: '2026',
-    lunar: 'Tức ngày 21 tháng 10 năm Bính Ngọ',
-  },
+  // ---- Tiệc cưới — 2 nơi (hiển thị dạng 2 tab: Hà Nội / Nha Trang) -------
+  events: [
+    {
+      id: 'hanoi',
+      label: 'Hà Nội',
+      venue: 'Cung Văn Hóa Hữu Nghị Việt - Xô',
+      address: '91 Trần Hưng Đạo, Phường Cửa Nam, Thành phố Hà Nội',
+      mapQuery:
+        'Cung Văn hóa Lao động Hữu nghị Việt Xô, 91 Trần Hưng Đạo, Hà Nội',
+      iso: '2026-11-29T18:00:00+07:00',
+      welcomeTime: '17:30', // đón khách (placeholder — sửa lại giờ thật)
+      startTime: '18:00', // khai tiệc (placeholder — sửa lại giờ thật)
+      weekday: 'Chủ Nhật',
+      day: '29',
+      month: '11',
+      year: '2026',
+      lunar: 'Tức ngày 21 tháng 10 năm Bính Ngọ',
+    },
+    {
+      id: 'nhatrang',
+      label: 'Nha Trang',
+      venue: 'Trung Tâm Hội Nghị Âu Lạc Thịnh',
+      address: '99 Nguyễn Thị Minh Khai, Phường Nha Trang, Khánh Hòa',
+      mapQuery:
+        'Trung Tâm Hội Nghị Âu Lạc Thịnh, 99 Nguyễn Thị Minh Khai, Nha Trang',
+      iso: '2026-11-22T18:00:00+07:00',
+      welcomeTime: '17:30', // (placeholder — sửa lại giờ thật)
+      startTime: '18:00', // (placeholder — sửa lại giờ thật)
+      weekday: 'Chủ Nhật',
+      day: '22',
+      month: '11',
+      year: '2026',
+      lunar: 'Tức ngày 14 tháng 10 năm Bính Ngọ',
+    },
+  ],
 
   // ---- Lịch trình ngày cưới ---------------------------------------------
   timeline: [
@@ -83,7 +116,7 @@ export const invitation = {
     { time: '18:00', label: 'Khai tiệc' },
     { time: '18:30', label: 'Nghi thức cưới' },
     { time: '19:00', label: 'Cắt bánh & nâng ly' },
-    { time: '20:30', label: 'Kết thúc tiệc' },
+    { time: '21:00', label: 'Kết thúc tiệc' },
   ],
 
   // ---- Dress code --------------------------------------------------------
@@ -110,8 +143,8 @@ export const invitation = {
     {
       side: 'Chú Rể',
       holder: 'HOANG DUC THINH',
-      bank: 'Ngân hàng ...',
-      account: '0000000000',
+      bank: 'Ngân hàng Quân Đội (MB)',
+      account: '0705030017',
       qr: '/qr/qr-chure.png', // ảnh QR đặt trong public/qr/
     },
     {

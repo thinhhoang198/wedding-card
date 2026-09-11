@@ -3,20 +3,20 @@ import { invitation } from './data/invitation'
 
 import Cover from './components/Cover'
 import MusicToggle from './components/MusicToggle'
+import PhotoBand from './components/PhotoBand'
+import PartySection from './components/PartySection'
 
 import Hero from './components/sections/Hero'
 import CoupleInfo from './components/sections/CoupleInfo'
 import Ceremony from './components/sections/Ceremony'
 import Gallery from './components/sections/Gallery'
-import Reception from './components/sections/Reception'
-import Rsvp from './components/sections/Rsvp'
 import DressCode from './components/sections/DressCode'
 import Timeline from './components/sections/Timeline'
 import Guestbook from './components/sections/Guestbook'
 import GiftBox from './components/sections/GiftBox'
 import ThankYou from './components/sections/ThankYou'
 
-const OPEN_ANIM_MS = 1900 // thời lượng animation mở thiệp (lóe sáng → bay lên → hiện section)
+const OPEN_ANIM_MS = 2150 // thời lượng animation mở thiệp (echo → bay lên nhẹ → hiện section)
 
 export default function App() {
   // 'cover'  = màn mở thiệp, không cuộn
@@ -62,13 +62,15 @@ export default function App() {
             <Hero data={invitation} />
             <CoupleInfo data={invitation} />
             <Ceremony data={invitation} />
+            <PhotoBand src={invitation.photos.band1.src} caption={invitation.photos.band1.caption} />
             <Gallery data={invitation} />
-            <Reception data={invitation} />
-            <Rsvp data={invitation} />
+            {/* Tiệc cưới + RSVP — 2 tab địa điểm (Hà Nội / Nha Trang) trên nền ảnh mờ */}
+            <PartySection data={invitation} />
             <DressCode data={invitation} />
             <Timeline data={invitation} />
             <Guestbook data={invitation} />
             <GiftBox data={invitation} />
+            <PhotoBand src={invitation.photos.band2.src} caption={invitation.photos.band2.caption} />
             <ThankYou data={invitation} />
           </main>
       )}

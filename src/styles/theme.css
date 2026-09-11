@@ -22,7 +22,7 @@
   --card-max: 900px;          /* bề rộng "thân thiệp" trên desktop */
   --content-max: 600px;       /* bề rộng tối đa của khối chữ để dễ đọc */
   --radius: 18px;
-  --gap: clamp(28px, 4.5vw, 46px); /* khoảng cách dọc giữa các section (đã thu gọn) */
+  --gap: clamp(18px, 3.2vw, 32px); /* khoảng cách dọc giữa các section (đã thu gọn thêm) */
 }
 
 * { box-sizing: border-box; }
@@ -136,21 +136,59 @@ img { max-width: 100%; display: block; }
   margin-inline: auto;
 }
 
+/* Khung ảnh dùng chung — chưa có ảnh sẽ hiện nền kem + gợi ý "Ảnh" ------- */
+.pf {
+  position: relative; overflow: hidden;
+  background: linear-gradient(150deg, var(--c-cream-2), #e3d2bd);
+}
+.pf > img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  position: relative; z-index: 1;
+}
+.pf-hint {
+  position: absolute; inset: 0; z-index: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  color: var(--c-primary-soft); opacity: 0.5;
+  font-family: var(--f-body); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.pf-hint::before { content: '❤'; font-size: 1.4rem; opacity: 0.8; }
+
+/* Nền ảnh mờ phía sau mục Tiệc cưới + RSVP ------------------------------- */
+.party-bg { position: relative; }
+.party-bg > section { position: relative; z-index: 1; }
+.party-bg-img {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-size: cover; background-position: center;
+  filter: blur(3px);
+  opacity: 0.26;
+  /* fade nhẹ ở mép trên/dưới để hoà vào nền giấy */
+  -webkit-mask: linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+  mask: linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+}
+
 /* ==========================================================================
    ANIMATION
    ========================================================================== */
 
-/* Reveal-on-scroll: mờ + trượt lên */
+/* Reveal-on-scroll: nhiều kiểu (up / left / right / zoom / fade) */
 .reveal {
   opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.85s ease, transform 0.95s cubic-bezier(0.33, 1, 0.68, 1);
   will-change: opacity, transform;
 }
+.reveal.rv-up { transform: translateY(30px); }
+.reveal.rv-left { transform: translateX(-46px); }
+.reveal.rv-right { transform: translateX(46px); }
+.reveal.rv-zoom { transform: scale(0.9); }
+.reveal.rv-fade { transform: none; }
 .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
+
+/* Tên cô dâu / chú rể bay vào từ 2 bên */
+@keyframes flyInLeft { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: none; } }
+@keyframes flyInRight { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: none; } }
 
 /* Thiệp chính hiện ra dịu sau khi card cover bay lên */
 @keyframes mainFade {
