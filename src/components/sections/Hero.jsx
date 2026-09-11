@@ -1,8 +1,9 @@
-import { Reveal } from '../common'
+import { Reveal } from '../common';
 
 /** Hero: tên đôi uyên ương cỡ lớn + ngày cưới (mở đầu nội dung). */
-export default function Hero({ data }) {
-  const { groom, bride, weddingDate } = data
+export default function Hero({ data, eventIdx }) {
+  const { groom, bride, events } = data;
+  const date = events[eventIdx];
   return (
     <section className="section hero">
       <Reveal variant="fade">
@@ -12,13 +13,23 @@ export default function Hero({ data }) {
           <em>&amp;</em>
           <span className="n-bride">{bride.shortName}</span>
         </h1>
-        <div className="divider" aria-hidden>❦</div>
-        <p className="hero-date">{weddingDate.weekday}, {weddingDate.solar}</p>
+        <div className="divider" aria-hidden>
+          ❦
+        </div>
+        <p className="hero-date">
+          {date.weekday}, {date.day} tháng {date.month} năm {date.year}
+        </p>
       </Reveal>
 
       <Reveal variant="zoom" className="hero-photo-wrap">
         <div className="hero-photo pf">
-          <img src={data.photos.hero} alt="" onError={(e) => { e.currentTarget.style.opacity = 0 }} />
+          <img
+            src={data.photos.hero}
+            alt=""
+            onError={(e) => {
+              e.currentTarget.style.opacity = 0;
+            }}
+          />
           <span className="pf-hint">Ảnh cưới</span>
         </div>
       </Reveal>
@@ -57,5 +68,5 @@ export default function Hero({ data }) {
         .hero-date { font-family: var(--f-serif); color: var(--c-ink-soft); font-size: 1.2rem; }
       `}</style>
     </section>
-  )
+  );
 }

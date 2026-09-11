@@ -1,9 +1,11 @@
-import { Reveal, SectionTitle } from '../common'
-import { labels } from '../../data/invitation'
+import { Reveal, SectionTitle } from '../common';
+import { labels } from '../../data/invitation';
 
 /** Trân trọng báo tin — Lễ thành hôn: chú rể & cô dâu, nơi & giờ cử hành. */
-export default function Ceremony({ data }) {
-  const { groom, bride, ceremony } = data
+export default function Ceremony({ data, eventIdx }) {
+  const { groom, bride, ceremony, events } = data;
+  const date = events[eventIdx];
+  console.log('🚀 ~ Ceremony ~ date:', date);
 
   return (
     <section className="section ceremony">
@@ -15,8 +17,13 @@ export default function Ceremony({ data }) {
       <Reveal className="couple" variant="zoom">
         <div className="person">
           <div className="photo">
-            <img src={groom.photo} alt={groom.name}
-                 onError={(e) => { e.currentTarget.style.opacity = 0 }} />
+            <img
+              src={groom.photo}
+              alt={groom.name}
+              onError={(e) => {
+                e.currentTarget.style.opacity = 0;
+              }}
+            />
           </div>
           <span className="ptype">Chú Rể</span>
           <h3>{groom.name}</h3>
@@ -24,8 +31,13 @@ export default function Ceremony({ data }) {
         <div className="amp">&amp;</div>
         <div className="person">
           <div className="photo">
-            <img src={bride.photo} alt={bride.name}
-                 onError={(e) => { e.currentTarget.style.opacity = 0 }} />
+            <img
+              src={bride.photo}
+              alt={bride.name}
+              onError={(e) => {
+                e.currentTarget.style.opacity = 0;
+              }}
+            />
           </div>
           <span className="ptype">Cô Dâu</span>
           <h3>{bride.name}</h3>
@@ -104,5 +116,5 @@ export default function Ceremony({ data }) {
         .lunar { color: var(--c-ink-soft); font-style: italic; font-size: 0.85rem; margin: 14px 0 0; }
       `}</style>
     </section>
-  )
+  );
 }

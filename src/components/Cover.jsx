@@ -41,12 +41,22 @@ export default function Cover({ data, onOpen, closing }) {
             <span className="cn-bride">{bride.shortName}</span>
           </h1>
           <div className="divider" aria-hidden>❦</div>
-          <p className="cover-date">{weddingDate.solar}</p>
           <p className="cover-invite">Thân Mời</p>
-          <button className="btn btn-primary open-btn" onClick={onOpen} disabled={closing}>
-            <span>Mở thiệp</span>
-            <i className="shine" aria-hidden />
-          </button>
+          <p className="cover-choose-note">Mở thiệp theo nơi bạn tham dự</p>
+          <div className="cover-choose">
+            {data.events.map((e, i) => (
+              <button
+                key={e.id}
+                className="loc-btn"
+                onClick={() => onOpen(i)}
+                disabled={closing}
+              >
+                <span className="loc-name">{e.label}</span>
+                <span className="loc-date">{e.day}.{e.month}.{e.year}</span>
+                <i className="shine" aria-hidden />
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -165,17 +175,33 @@ export default function Cover({ data, onOpen, closing }) {
         .cover-names { font-family: var(--f-script); color: var(--c-primary); margin: 0; line-height: 0.98; font-weight: 700; }
         .cover-names span { display: block; font-size: clamp(2.4rem, 9vw, 3.5rem); }
         .cover-names em { font-family: var(--f-serif); font-style: italic; font-size: 1rem; color: var(--c-accent); }
-        .cover-date { font-family: var(--f-serif); color: var(--c-ink-soft); font-size: 1.1rem; margin: 0 0 2px; }
-        .cover-invite { font-family: var(--f-serif); color: var(--c-ink); font-size: 1.2rem; margin: 2px 0 14px; }
-        .open-btn {
-          position: relative; overflow: hidden;
-          font-family: var(--f-serif); font-size: 1.1rem; font-weight: 600; padding: 11px 38px;
+        .cover-invite { font-family: var(--f-serif); color: var(--c-ink); font-size: 1.2rem; margin: 2px 0 6px; }
+        .cover-choose-note {
+          font-family: var(--f-body); color: var(--c-ink-soft);
+          font-size: 0.78rem; letter-spacing: 0.06em; margin: 0 0 12px;
         }
-        .open-btn .shine {
+        /* 2 nút chọn địa điểm mở thiệp */
+        .cover-choose { display: flex; gap: clamp(10px, 3vw, 16px); justify-content: center; flex-wrap: wrap; }
+        .loc-btn {
+          position: relative; overflow: hidden; cursor: pointer;
+          display: flex; flex-direction: column; align-items: center; gap: 2px;
+          min-width: clamp(120px, 34vw, 150px); padding: 10px 20px;
+          border-radius: 14px; border: 1px solid var(--c-accent);
+          background: var(--c-primary); color: var(--c-cream);
+          box-shadow: 0 8px 20px rgba(90,26,36,0.32);
+          transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .loc-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(90,26,36,0.4); }
+        .loc-btn:active { transform: translateY(0) scale(0.98); }
+        .loc-btn:disabled { cursor: default; }
+        .loc-name { font-family: var(--f-serif); font-size: 1.25rem; font-weight: 600; line-height: 1.1; }
+        .loc-date { font-family: var(--f-body); font-size: 0.8rem; letter-spacing: 0.06em; opacity: 0.82; }
+        .loc-btn .shine {
           position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
-          background: linear-gradient(100deg, transparent, rgba(255,255,255,0.5), transparent);
-          animation: shine 2.8s ease-in-out infinite;
+          background: linear-gradient(100deg, transparent, rgba(255,255,255,0.45), transparent);
+          animation: shine 3.2s ease-in-out infinite;
         }
+        .loc-btn:nth-child(2) .shine { animation-delay: 1.4s; }
       `}</style>
     </div>
   )

@@ -1,49 +1,51 @@
-import { useEffect, useRef, useState } from 'react'
-import { invitation } from './data/invitation'
+import { useEffect, useRef, useState } from 'react';
+import { invitation } from './data/invitation';
 
-import Cover from './components/Cover'
-import MusicToggle from './components/MusicToggle'
-import PhotoBand from './components/PhotoBand'
-import PartySection from './components/PartySection'
+import Cover from './components/Cover';
+import MusicToggle from './components/MusicToggle';
+import PhotoBand from './components/PhotoBand';
+import PartySection from './components/PartySection';
 
-import Hero from './components/sections/Hero'
-import CoupleInfo from './components/sections/CoupleInfo'
-import Ceremony from './components/sections/Ceremony'
-import Gallery from './components/sections/Gallery'
-import DressCode from './components/sections/DressCode'
-import Timeline from './components/sections/Timeline'
-import Guestbook from './components/sections/Guestbook'
-import GiftBox from './components/sections/GiftBox'
-import ThankYou from './components/sections/ThankYou'
+import Hero from './components/sections/Hero';
+import CoupleInfo from './components/sections/CoupleInfo';
+import Ceremony from './components/sections/Ceremony';
+import Gallery from './components/sections/Gallery';
+import DressCode from './components/sections/DressCode';
+import Timeline from './components/sections/Timeline';
+import Guestbook from './components/sections/Guestbook';
+import GiftBox from './components/sections/GiftBox';
+import ThankYou from './components/sections/ThankYou';
 
-const OPEN_ANIM_MS = 2150 // thời lượng animation mở thiệp (echo → bay lên nhẹ → hiện section)
+const OPEN_ANIM_MS = 2150; // thời lượng animation mở thiệp (echo → bay lên nhẹ → hiện section)
 
 export default function App() {
   // 'cover'  = màn mở thiệp, không cuộn
   // 'opening'= card đang bay lên & mờ dần
   // 'open'   = đã vào thiệp chính, cuộn được
-  const [phase, setPhase] = useState('cover')
-  const audioRef = useRef(null)
+  const [phase, setPhase] = useState('cover');
+  const [eventIdx, setEventIdx] = useState(0); // địa điểm khách chọn ở cover
+  const audioRef = useRef(null);
 
   // Khoá cuộn cho tới khi vào thiệp chính.
   useEffect(() => {
-    document.body.style.overflow = phase === 'open' ? '' : 'hidden'
+    document.body.style.overflow = phase === 'open' ? '' : 'hidden';
     return () => {
-      document.body.style.overflow = ''
-    }
-  }, [phase])
+      document.body.style.overflow = '';
+    };
+  }, [phase]);
 
-  const handleOpen = () => {
-    if (phase !== 'cover') return
-    setPhase('opening')
-    audioRef.current?.play?.().catch(() => {})
+  const handleOpen = (idx = 0) => {
+    if (phase !== 'cover') return;
+    setEventIdx(idx);
+    setPhase('opening');
+    audioRef.current?.play?.().catch(() => {});
     window.setTimeout(() => {
-      window.scrollTo(0, 0)
-      setPhase('open')
-    }, OPEN_ANIM_MS)
-  }
+      window.scrollTo(0, 0);
+      setPhase('open');
+    }, OPEN_ANIM_MS);
+  };
 
-  const isOpen = phase === 'open'
+  const isOpen = phase === 'open';
 
   return (
     <div className="card-shell">
@@ -52,28 +54,38 @@ export default function App() {
 
       {/* Màn cover (kèm hiệu ứng đóng khi phase = opening) */}
       {phase !== 'open' && (
-        <Cover data={invitation} onOpen={handleOpen} closing={phase === 'opening'} />
+        <Cover
+          data={invitation}
+          onOpen={handleOpen}
+          closing={phase === 'opening'}
+        />
       )}
 
       {/* Thiệp chính — chưa render khi ở cover; mount ngay khi bắt đầu mở
           (phase 'opening') để cover bay lên là lộ thẳng ra thiệp, không hở nền tối */}
       {phase !== 'cover' && (
-          <main id="content" className="main-fade">
-            <Hero data={invitation} />
-            <CoupleInfo data={invitation} />
-            <Ceremony data={invitation} />
-            <PhotoBand src={invitation.photos.band1.src} caption={invitation.photos.band1.caption} />
-            <Gallery data={invitation} />
-            {/* Tiệc cưới + RSVP — 2 tab địa điểm (Hà Nội / Nha Trang) trên nền ảnh mờ */}
-            <PartySection data={invitation} />
-            <DressCode data={invitation} />
-            <Timeline data={invitation} />
-            <Guestbook data={invitation} />
-            <GiftBox data={invitation} />
-            <PhotoBand src={invitation.photos.band2.src} caption={invitation.photos.band2.caption} />
-            <ThankYou data={invitation} />
-          </main>
+        <main id="content" className="main-fade">
+          <Hero data={invitation} eventIdx={eventIdx} />
+          <CoupleInfo data={invitation} />
+          <Ceremony data={invitation} eventIdx={eventIdx} />
+          <PhotoBand
+            src={invitation.photos.band1.src}
+            caption={invitation.photos.band1.caption}
+          />
+          <Gallery data={invitation} />
+          {/* Tiệc cưới + RSVP — theo địa điểm khách đã chọn ở cover */}
+          <PartySection data={invitation} event={invitation.events[eventIdx]} />
+          <DressCode data={invitation} />
+          <Timeline data={invitation} />
+          <Guestbook data={invitation} />
+          <GiftBox data={invitation} />
+          <PhotoBand
+            src={invitation.photos.band2.src}
+            caption={invitation.photos.band2.caption}
+          />
+          <ThankYou data={invitation} />
+        </main>
       )}
     </div>
-  )
+  );
 }

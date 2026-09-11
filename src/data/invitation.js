@@ -80,22 +80,6 @@ export const invitation = {
   // ---- Tiệc cưới — 2 nơi (hiển thị dạng 2 tab: Hà Nội / Nha Trang) -------
   events: [
     {
-      id: 'hanoi',
-      label: 'Hà Nội',
-      venue: 'Cung Văn Hóa Hữu Nghị Việt - Xô',
-      address: '91 Trần Hưng Đạo, Phường Cửa Nam, Thành phố Hà Nội',
-      mapQuery:
-        'Cung Văn hóa Lao động Hữu nghị Việt Xô, 91 Trần Hưng Đạo, Hà Nội',
-      iso: '2026-11-29T18:00:00+07:00',
-      welcomeTime: '17:30', // đón khách (placeholder — sửa lại giờ thật)
-      startTime: '18:00', // khai tiệc (placeholder — sửa lại giờ thật)
-      weekday: 'Chủ Nhật',
-      day: '29',
-      month: '11',
-      year: '2026',
-      lunar: 'Tức ngày 21 tháng 10 năm Bính Ngọ',
-    },
-    {
       id: 'nhatrang',
       label: 'Nha Trang',
       venue: 'Trung Tâm Hội Nghị Âu Lạc Thịnh',
@@ -110,6 +94,22 @@ export const invitation = {
       month: '11',
       year: '2026',
       lunar: 'Tức ngày 14 tháng 10 năm Bính Ngọ',
+    },
+    {
+      id: 'hanoi',
+      label: 'Hà Nội',
+      venue: 'Cung Văn Hóa Hữu Nghị Việt - Xô',
+      address: '91 Trần Hưng Đạo, Phường Cửa Nam, Thành phố Hà Nội',
+      mapQuery:
+        'Cung Văn hóa Lao động Hữu nghị Việt Xô, 91 Trần Hưng Đạo, Hà Nội',
+      iso: '2026-11-29T18:00:00+07:00',
+      welcomeTime: '17:30', // đón khách (placeholder — sửa lại giờ thật)
+      startTime: '18:00', // khai tiệc (placeholder — sửa lại giờ thật)
+      weekday: 'Chủ Nhật',
+      day: '29',
+      month: '11',
+      year: '2026',
+      lunar: 'Tức ngày 21 tháng 10 năm Bính Ngọ',
     },
   ],
 
