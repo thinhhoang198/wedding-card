@@ -1,9 +1,11 @@
 import { Reveal } from '../common';
+import { useParallax } from '../../hooks/useParallax';
 
 /** Hero: tên đôi uyên ương cỡ lớn + ngày cưới (mở đầu nội dung). */
 export default function Hero({ data, eventIdx }) {
   const { groom, bride, events } = data;
   const date = events[eventIdx];
+  const photoRef = useParallax({ speed: 0.24, scale: 1.25 });
   return (
     <section className="section hero">
       <Reveal variant="fade">
@@ -24,6 +26,7 @@ export default function Hero({ data, eventIdx }) {
       <Reveal variant="zoom" className="hero-photo-wrap">
         <div className="hero-photo pf">
           <img
+            ref={photoRef}
             src={data.photos.hero}
             alt=""
             onError={(e) => {
@@ -41,7 +44,7 @@ export default function Hero({ data, eventIdx }) {
           width: min(480px, 92%); aspect-ratio: 4 / 5; margin: 0 auto;
           border-radius: 999px 999px 20px 20px;
           border: 3px solid var(--c-accent);
-          box-shadow: 0 20px 46px rgba(90,26,36,0.28);
+          box-shadow: 0 20px 46px rgba(74, 58, 40,0.28);
         }
         .hero-sub {
           letter-spacing: 0.4em; text-transform: uppercase;
@@ -49,9 +52,9 @@ export default function Hero({ data, eventIdx }) {
         }
         .hero-names {
           font-family: var(--f-script); color: var(--c-primary);
-          margin: 0; font-weight: 700; line-height: 1;
+          margin: 0; font-weight: 500; line-height: 1.05;
         }
-        .hero-names span { display: block; font-size: clamp(3.2rem, 17vw, 4.8rem); }
+        .hero-names span { display: block; font-size: clamp(3rem, 14vw, 4.6rem); }
         .hero-names em { font-family: var(--f-serif); font-style: italic; color: var(--c-accent); font-size: 1.4rem; }
 
         /* Tên bay vào từ 2 bên khi hero hiện ra */

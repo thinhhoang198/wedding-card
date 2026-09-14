@@ -4,8 +4,8 @@ import { labels } from '../../data/invitation';
 /** Trân trọng báo tin — Lễ thành hôn: chú rể & cô dâu, nơi & giờ cử hành. */
 export default function Ceremony({ data, eventIdx }) {
   const { groom, bride, ceremony, events } = data;
-  const date = events[eventIdx];
-  console.log('🚀 ~ Ceremony ~ date:', date);
+  const currentEvent = events[eventIdx] || events[0];
+  const currentCeremony = currentEvent?.ceremony || ceremony;
 
   return (
     <section className="section ceremony">
@@ -46,25 +46,25 @@ export default function Ceremony({ data, eventIdx }) {
 
       <Reveal className="panel when">
         <p className="when-place">Hôn lễ được cử hành tại</p>
-        <p className="when-place-name">{ceremony.place}</p>
+        <p className="when-place-name">{currentCeremony.place}</p>
 
         <div className="when-date">
           <div className="wd-col">
             <span className="wd-top">Vào lúc</span>
-            <strong>{ceremony.time}</strong>
+            <strong>{currentCeremony.time}</strong>
           </div>
           <div className="wd-sep" />
           <div className="wd-col">
-            <span className="wd-top">{ceremony.weekday}</span>
-            <strong>{ceremony.day}</strong>
+            <span className="wd-top">{currentCeremony.weekday}</span>
+            <strong>{currentCeremony.day}</strong>
           </div>
           <div className="wd-sep" />
           <div className="wd-col">
-            <span className="wd-top">Tháng {ceremony.month}</span>
-            <strong>{ceremony.year}</strong>
+            <span className="wd-top">Tháng {currentCeremony.month}</span>
+            <strong>{currentCeremony.year}</strong>
           </div>
         </div>
-        <p className="lunar">({ceremony.lunar})</p>
+        <p className="lunar">({currentCeremony.lunar})</p>
       </Reveal>
 
       <style>{`
@@ -80,7 +80,7 @@ export default function Ceremony({ data, eventIdx }) {
           width: clamp(96px, 30vw, 150px); aspect-ratio: 1;
           border-radius: 50%; overflow: hidden; position: relative;
           border: 3px solid var(--c-accent);
-          box-shadow: 0 8px 22px rgba(90, 26, 36, 0.28);
+          box-shadow: 0 8px 22px rgba(74, 58, 40, 0.28);
           background: linear-gradient(150deg, var(--c-cream-2), #e3d2bd);
           margin-bottom: 12px;
         }
@@ -97,9 +97,8 @@ export default function Ceremony({ data, eventIdx }) {
           margin: 0 0 3px;
         }
         .couple h3 {
-          font-family: var(--f-script); font-size: clamp(1.15rem, 4.6vw, 2rem);
-          line-height: 1.1; color: var(--c-primary); margin: 0; font-weight: 700;
-          white-space: nowrap; /* luôn 1 dòng */
+          font-family: var(--f-script); font-size: clamp(1.1rem, 3.8vw, 1.6rem);
+          line-height: 1.2; color: var(--c-primary); margin: 0; font-weight: 500;
         }
         .couple .amp {
           font-family: var(--f-serif); font-style: italic; color: var(--c-accent);

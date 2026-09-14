@@ -78,7 +78,7 @@ export default function GiftBox({ data }) {
 
         .gm {
           position: fixed; inset: 0; z-index: 1001;
-          background: rgba(20, 6, 10, 0.7);
+          background: rgba(28, 20, 12, 0.7);
           display: flex; align-items: center; justify-content: center; padding: 18px;
           animation: coverIn 0.25s ease both;
         }

@@ -128,7 +128,7 @@ export default function Gallery({ data }) {
           cursor: pointer;
         }
         .cf-item img { width: 100%; height: 100%; object-fit: cover; }
-        .cf-item.is-center { box-shadow: 0 12px 28px rgba(90,26,36,0.18); }
+        .cf-item.is-center { box-shadow: 0 12px 28px rgba(74, 58, 40,0.18); }
 
         .cf-arrow {
           position: absolute; top: 50%; transform: translateY(-50%);
@@ -149,7 +149,7 @@ export default function Gallery({ data }) {
 
         .lb {
           position: fixed; inset: 0; z-index: 1000;
-          background: rgba(20, 6, 10, 0.94);
+          background: rgba(28, 20, 12, 0.94);
           display: flex; align-items: center; justify-content: center;
           animation: coverIn 0.25s ease both;
         }

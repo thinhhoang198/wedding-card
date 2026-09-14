@@ -2,32 +2,42 @@
    THEME + GLOBAL  —  Đổi tông màu cả thiệp chỉ trong khối :root bên dưới.
    ========================================================================== */
 :root {
-  /* Bảng màu chủ đạo (mặc định: đỏ burgundy sang trọng) */
-  --c-primary: #5a1a24;       /* đỏ đô đậm */
-  --c-primary-soft: #8c2f39;  /* đỏ nhạt hơn */
-  --c-accent: #c9a15a;        /* vàng kim */
-  --c-cream: #f6ede2;         /* nền thẻ kem */
-  --c-cream-2: #efe3d3;
-  --c-ink: #3a2b2b;           /* màu chữ chính trên nền kem */
-  --c-ink-soft: #7a5c52;      /* chữ phụ */
-  --c-bg: #4a141d;            /* nền trang phía sau thẻ */
+  /* Bảng màu chủ đạo: TRẮNG SÁNG + VÀNG ĐỒNG (White & Gold) */
+  --c-primary: #94723a; /* vàng đồng cổ điển — nút/tên/tiêu đề/tim */
+  --c-primary-soft: #bfa168; /* vàng champagne dịu */
+  --c-accent: #cbb281; /* vàng kim satin — viền/nhãn/vạch/hoa văn */
+  --c-cream: #ffffff; /* nền thẻ — trắng tinh */
+  --c-cream-2: #f8f5f0; /* nền panel — trắng ngà rất nhẹ */
+  --c-ink: #3a3025; /* chữ chính — nâu đậm trang trọng */
+  --c-ink-soft: #7a6b5d; /* chữ phụ — nâu trung tính */
+  --c-bg: #f8f8ff; /* nền trang bên ngoài — màu trắng */
 
   /* Font */
-  --f-script: 'The Nautigal', 'Cormorant Garamond', cursive; /* thư pháp: chỉ dùng cho tên cô dâu chú rể */
-  --f-title: 'Lora', 'Cormorant Garamond', serif;            /* thanh lịch, dấu tiếng Việt chuẩn & đều: tiêu đề section */
+  --f-script:
+    'EB Garamond', 'Cormorant Garamond', serif; /* serif thanh lịch, ít uốn lượn, cho tên cô dâu chú rể */
+  --f-title:
+    'Lora', 'Cormorant Garamond', serif; /* thanh lịch, dấu tiếng Việt chuẩn & đều: tiêu đề section */
   --f-serif: 'Cormorant Garamond', serif;
   --f-body: 'Be Vietnam Pro', system-ui, sans-serif;
 
   /* Bố cục */
-  --card-max: 900px;          /* bề rộng "thân thiệp" trên desktop */
-  --content-max: 600px;       /* bề rộng tối đa của khối chữ để dễ đọc */
+  --card-max: 900px; /* bề rộng "thân thiệp" trên desktop */
+  --content-max: 600px; /* bề rộng tối đa của khối chữ để dễ đọc */
   --radius: 18px;
-  --gap: clamp(18px, 3.2vw, 32px); /* khoảng cách dọc giữa các section (đã thu gọn thêm) */
+  --gap: clamp(
+    18px,
+    3.2vw,
+    32px
+  ); /* khoảng cách dọc giữa các section (đã thu gọn thêm) */
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
@@ -38,32 +48,36 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-img { max-width: 100%; display: block; }
+img {
+  max-width: 100%;
+  display: block;
+}
 
-/* Thân thiệp: dải canh giữa trên nền đậm ----------------------------------- */
-/* Nền tối để màn cover không bị "nháy trắng" khi mới tải trang. */
+/* Thân thiệp: dải canh giữa trên nền sáng ---------------------------------- */
 .card-shell {
   max-width: var(--card-max);
   margin: 0 auto;
-  background: var(--c-bg);
+  background: #f7f3eb;
   min-height: 100vh;
   position: relative;
   overflow: hidden;
+  box-shadow:
+    0 0 50px rgba(0, 0, 0, 0.08),
+    0 0 20px rgba(0, 0, 0, 0.04);
 }
 
-/* Thiệp chính: nền GIẤY THẬT — kem ấm + vân mây loang mềm + sợi giấy + hạt mịn
-   + ánh sáng nhẹ. Các lớp vân sinh bằng SVG feTurbulence (xám hoá, mờ thấp). */
+/* Thiệp chính: nền GIẤY THẬT — giấy mỹ thuật kem sáng + vân mây loang mềm + sợi giấy và hạt mịn */
 #content {
   position: relative;
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.35);
-  background-color: #f2e7d0;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+  background-color: #f7f3eb;
   background-image:
-    /* vân mây loang — cảm giác giấy thủ công không đều màu (đều từ trên xuống) */
-    url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='320'%20height='320'%3E%3Cfilter%20id='c'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.028'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='saturate'%20values='0'/%3E%3C/filter%3E%3Crect%20width='320'%20height='320'%20filter='url(%23c)'%20opacity='0.17'/%3E%3C/svg%3E"),
-    /* hạt sợi giấy mịn */
-    url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%3E%3Cfilter%20id='f'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20type='saturate'%20values='0'/%3E%3C/filter%3E%3Crect%20width='180'%20height='180'%20filter='url(%23f)'%20opacity='0.09'/%3E%3C/svg%3E");
-  background-repeat: repeat, repeat;
-  background-size: 320px 320px, 180px 180px;
+    /* vân mây loang — cảm giác giấy thủ công không đều màu */ url('/public/paper-bg.webp');
+  background-repeat: repeat;
+  background-position: center top;
+  background-size: 100% auto;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
 }
 
 /* Section chung ----------------------------------------------------------- */
@@ -100,7 +114,9 @@ img { max-width: 100%; display: block; }
   width: 46px;
   background: linear-gradient(90deg, transparent, var(--c-accent));
 }
-.divider::after { transform: scaleX(-1); }
+.divider::after {
+  transform: scaleX(-1);
+}
 
 /* Nút bo tròn (pill) */
 .btn {
@@ -111,20 +127,28 @@ img { max-width: 100%; display: block; }
   padding: 13px 30px;
   font-size: 1rem;
   font-weight: 500;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    opacity 0.18s;
 }
-.btn:active { transform: scale(0.97); }
+.btn:active {
+  transform: scale(0.97);
+}
 .btn-primary {
   background: var(--c-primary);
   color: var(--c-cream);
-  box-shadow: 0 8px 22px rgba(90, 26, 36, 0.35);
+  box-shadow: 0 8px 22px rgba(74, 58, 40, 0.35);
 }
 .btn-outline {
   background: transparent;
   color: var(--c-primary);
   border: 1.5px solid var(--c-primary);
 }
-.btn:disabled { opacity: 0.6; cursor: default; }
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
 
 /* Thẻ con nền kem đậm hơn — canh giữa, giới hạn bề rộng cho dễ đọc */
 .panel {
@@ -138,31 +162,65 @@ img { max-width: 100%; display: block; }
 
 /* Khung ảnh dùng chung — chưa có ảnh sẽ hiện nền kem + gợi ý "Ảnh" ------- */
 .pf {
-  position: relative; overflow: hidden;
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(150deg, var(--c-cream-2), #e3d2bd);
 }
 .pf > img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  position: relative; z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
 }
 .pf-hint {
-  position: absolute; inset: 0; z-index: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
-  color: var(--c-primary-soft); opacity: 0.5;
-  font-family: var(--f-body); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--c-primary-soft);
+  opacity: 0.5;
+  font-family: var(--f-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
-.pf-hint::before { content: '❤'; font-size: 1.4rem; opacity: 0.8; }
+.pf-hint::before {
+  content: '❤';
+  font-size: 1.4rem;
+  opacity: 0.8;
+}
 
 /* Nền ảnh mờ phía sau mục Tiệc cưới + RSVP ------------------------------- */
-.party-bg { position: relative; }
-.party-bg > section { position: relative; z-index: 1; }
+.party-bg {
+  position: relative;
+}
+.party-bg > section {
+  position: relative;
+  z-index: 1;
+}
 .party-bg-img {
-  position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background-size: cover; background-position: center;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-size: cover;
+  background-position: center;
   filter: blur(3px);
   opacity: 0.26;
   /* fade nhẹ ở mép trên/dưới để hoà vào nền giấy */
-  -webkit-mask: linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+  -webkit-mask: linear-gradient(
+    to bottom,
+    transparent,
+    #000 9%,
+    #000 91%,
+    transparent
+  );
   mask: linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
 }
 
@@ -173,75 +231,168 @@ img { max-width: 100%; display: block; }
 /* Reveal-on-scroll: nhiều kiểu (up / left / right / zoom / fade) */
 .reveal {
   opacity: 0;
-  transition: opacity 0.85s ease, transform 0.95s cubic-bezier(0.33, 1, 0.68, 1);
+  transition:
+    opacity 0.85s ease,
+    transform 0.95s cubic-bezier(0.33, 1, 0.68, 1);
   will-change: opacity, transform;
 }
-.reveal.rv-up { transform: translateY(30px); }
-.reveal.rv-left { transform: translateX(-46px); }
-.reveal.rv-right { transform: translateX(46px); }
-.reveal.rv-zoom { transform: scale(0.9); }
-.reveal.rv-fade { transform: none; }
+.reveal.rv-up {
+  transform: translateY(30px);
+}
+.reveal.rv-left {
+  transform: translateX(-46px);
+}
+.reveal.rv-right {
+  transform: translateX(46px);
+}
+.reveal.rv-zoom {
+  transform: scale(0.9);
+}
+.reveal.rv-fade {
+  transform: none;
+}
 .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
 
 /* Tên cô dâu / chú rể bay vào từ 2 bên */
-@keyframes flyInLeft { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: none; } }
-@keyframes flyInRight { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: none; } }
+@keyframes flyInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes flyInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 /* Thiệp chính hiện ra dịu sau khi card cover bay lên */
 @keyframes mainFade {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
-.main-fade { animation: mainFade 0.7s ease both; }
+.main-fade {
+  animation: mainFade 0.7s ease both;
+}
 
 /* Card cover bay lên & mờ dần khi bấm "Mở thiệp" */
 @keyframes cardFlyUp {
-  0% { opacity: 1; transform: translateY(0) scale(1); }
-  100% { opacity: 0; transform: translateY(-70px) scale(0.94); }
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-70px) scale(0.94);
+  }
 }
 @keyframes coverFadeOut {
-  to { opacity: 0; }
+  to {
+    opacity: 0;
+  }
 }
 /* Fade nhẹ cho popup (lightbox / modal quà). Đặt ở global để dùng được
    kể cả sau khi màn cover đã unmount. */
-@keyframes coverIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes coverIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 /* Float nhẹ (dùng cho huy hiệu trái tim, hoa văn) */
 @keyframes drFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
-.float { animation: drFloat 4s ease-in-out infinite; }
+.float {
+  animation: drFloat 4s ease-in-out infinite;
+}
 
 /* Hạt (cánh hoa / trái tim) rơi nền */
 @keyframes ambient-fall {
-  0% { transform: translateY(-8vh) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.9; }
-  100% { transform: translateY(110vh) rotate(320deg); opacity: 0; }
+  0% {
+    transform: translateY(-8vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(110vh) rotate(320deg);
+    opacity: 0;
+  }
 }
 
 /* Nhịp con dấu ở cover */
 @keyframes seal-pulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(201,161,90,0.5); }
-  50% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(201,161,90,0); }
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(201, 161, 90, 0.5);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 12px rgba(201, 161, 90, 0);
+  }
 }
 
 /* Ánh sáng lướt qua nút */
 @keyframes shine {
-  0% { left: -60%; }
-  100% { left: 130%; }
+  0% {
+    left: -60%;
+  }
+  100% {
+    left: 130%;
+  }
 }
 
 /* Nhấp nháy gợi ý "chạm mở" */
 @keyframes hint-pulse {
-  0%, 100% { opacity: 0.55; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(4px); }
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(4px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .float, .reveal { animation: none; transition: none; }
-  .reveal { opacity: 1; transform: none; }
+  .float,
+  .reveal {
+    animation: none;
+    transition: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }

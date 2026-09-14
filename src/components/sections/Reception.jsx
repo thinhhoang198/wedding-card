@@ -88,7 +88,7 @@ export default function Reception({ data, event }) {
         /* Ngày cưới: hình trái tim thay vì khoanh tròn, số nằm trên nền tim */
         .cal-d.is-day {
           background:
-            url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2030'%3E%3Cpath%20d='M16%2028.8%20C7%2021.2%202%2015.6%202%209.9%20C2%205.5%205.4%202%209.4%202%20C12%202%2014.4%203.6%2016%205.9%20C17.6%203.6%2020%202%2022.6%202%20C26.6%202%2030%205.5%2030%209.9%20C30%2015.6%2025%2021.2%2016%2028.8%20Z'%20fill='%235a1a24'/%3E%3C/svg%3E")
+            url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2030'%3E%3Cpath%20d='M16%2028.8%20C7%2021.2%202%2015.6%202%209.9%20C2%205.5%205.4%202%209.4%202%20C12%202%2014.4%203.6%2016%205.9%20C17.6%203.6%2020%202%2022.6%202%20C26.6%202%2030%205.5%2030%209.9%20C30%2015.6%2025%2021.2%2016%2028.8%20Z'%20fill='%23a67c1f'/%3E%3C/svg%3E")
             no-repeat center 56% / 34px 32px;
           color: var(--c-cream);
           font-weight: 700;

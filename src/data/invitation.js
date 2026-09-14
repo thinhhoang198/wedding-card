@@ -87,13 +87,22 @@ export const invitation = {
       mapQuery:
         'Trung Tâm Hội Nghị Âu Lạc Thịnh, 99 Nguyễn Thị Minh Khai, Nha Trang',
       iso: '2026-11-22T18:00:00+07:00',
-      welcomeTime: '17:30', // (placeholder — sửa lại giờ thật)
-      startTime: '18:00', // (placeholder — sửa lại giờ thật)
+      welcomeTime: '17:30',
+      startTime: '18:00',
       weekday: 'Chủ Nhật',
       day: '22',
       month: '11',
       year: '2026',
       lunar: 'Tức ngày 14 tháng 10 năm Bính Ngọ',
+      ceremony: {
+        place: 'Tư Gia Nhà Gái',
+        time: '09:00',
+        weekday: 'Chủ Nhật',
+        day: '22',
+        month: '11',
+        year: '2026',
+        lunar: 'Tức ngày 14 tháng 10 năm Bính Ngọ',
+      },
     },
     {
       id: 'hanoi',
@@ -103,13 +112,22 @@ export const invitation = {
       mapQuery:
         'Cung Văn hóa Lao động Hữu nghị Việt Xô, 91 Trần Hưng Đạo, Hà Nội',
       iso: '2026-11-29T18:00:00+07:00',
-      welcomeTime: '17:30', // đón khách (placeholder — sửa lại giờ thật)
-      startTime: '18:00', // khai tiệc (placeholder — sửa lại giờ thật)
+      welcomeTime: '17:30',
+      startTime: '18:00',
       weekday: 'Chủ Nhật',
       day: '29',
       month: '11',
       year: '2026',
       lunar: 'Tức ngày 21 tháng 10 năm Bính Ngọ',
+      ceremony: {
+        place: 'Tư Gia Nhà Trai',
+        time: '09:00',
+        weekday: 'Chủ Nhật',
+        day: '29',
+        month: '11',
+        year: '2026',
+        lunar: 'Tức ngày 21 tháng 10 năm Bính Ngọ',
+      },
     },
   ],
 
@@ -125,7 +143,7 @@ export const invitation = {
   // ---- Dress code --------------------------------------------------------
   dressCode: {
     note: 'Rất mong quý khách chọn trang phục theo tông màu dưới đây để bữa tiệc thêm trọn vẹn.',
-    colors: ['#5a1a24', '#8c2f39', '#c9a15a', '#f6ede2'],
+    colors: ['#a67c1f', '#c8a43c', '#8a6f46', '#faf5e9'],
   },
 
   // ---- Album ảnh ---------------------------------------------------------

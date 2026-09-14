@@ -44,7 +44,7 @@ export default function CoupleInfo({ data }) {
           border-radius: 18px;
           background: var(--c-cream-2);
           padding: clamp(26px, 5vw, 38px) clamp(20px, 4vw, 32px);
-          box-shadow: 0 12px 30px rgba(90, 26, 36, 0.1);
+          box-shadow: 0 12px 30px rgba(74, 58, 40, 0.1);
         }
         /* viền đôi mảnh bên trong cho cảm giác thiệp trang trọng */
         .winfo::before {

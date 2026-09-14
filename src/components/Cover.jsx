@@ -1,4 +1,4 @@
-import FallingPetals from './FallingPetals'
+import FallingPetals from './FallingPetals';
 
 /**
  * Màn Cover full-screen (không cuộn). Card ~600×420 với hoạ tiết hoa.
@@ -7,22 +7,10 @@ import FallingPetals from './FallingPetals'
  * thiệp bay nhẹ lên & mờ dần → sau đó thiệp chính hiện ra.
  */
 export default function Cover({ data, onOpen, closing }) {
-  const { groom, bride, weddingDate } = data
+  const { groom, bride, weddingDate } = data;
 
   return (
     <div className={`cover ${closing ? 'is-closing' : ''}`}>
-      {/* Chữ Hỷ (囍) bay nền cover */}
-      <FallingPetals
-        position="absolute"
-        zIndex={1}
-        maxWidth="100%"
-        count={14}
-        symbol="囍"
-        color="var(--c-accent)"
-        minSize={16}
-        maxSize={34}
-      />
-
       <div className="cover-card">
         {/* hoa trang trí 2 góc dưới (bên phải lật gương cho cân đối) */}
         <span className="flower flower-l" aria-hidden>
@@ -33,14 +21,18 @@ export default function Cover({ data, onOpen, closing }) {
         </span>
 
         <div className="cover-inner">
-          <div className="seal float" aria-hidden>♥</div>
+          <div className="seal float" aria-hidden>
+            ♥
+          </div>
           <p className="cover-sub">Save The Date</p>
           <h1 className="cover-names">
             <span className="cn-groom">{groom.shortName}</span>
             <em>&amp;</em>
             <span className="cn-bride">{bride.shortName}</span>
           </h1>
-          <div className="divider" aria-hidden>❦</div>
+          <div className="divider" aria-hidden>
+            ❦
+          </div>
           <p className="cover-invite">Thân Mời</p>
           <p className="cover-choose-note">Mở thiệp theo nơi bạn tham dự</p>
           <div className="cover-choose">
@@ -52,7 +44,9 @@ export default function Cover({ data, onOpen, closing }) {
                 disabled={closing}
               >
                 <span className="loc-name">{e.label}</span>
-                <span className="loc-date">{e.day}.{e.month}.{e.year}</span>
+                <span className="loc-date">
+                  {e.day}.{e.month}.{e.year}
+                </span>
                 <i className="shine" aria-hidden />
               </button>
             ))}
@@ -72,7 +66,7 @@ export default function Cover({ data, onOpen, closing }) {
           justify-content: center;
           padding: 20px;
           background:
-            radial-gradient(120% 90% at 50% 0%, var(--c-primary-soft), var(--c-bg) 70%);
+            linear-gradient(to bottom right, #f3e6da, #e8d5c4, #dcc6b2)
         }
 
         /* ---- Trạng thái đóng: echo lan toả → thiệp bay lên nhẹ → mờ dần ---- */
@@ -172,9 +166,9 @@ export default function Cover({ data, onOpen, closing }) {
           font-family: var(--f-body); letter-spacing: 0.35em; text-transform: uppercase;
           font-size: 0.68rem; color: var(--c-accent); margin: 0 0 6px;
         }
-        .cover-names { font-family: var(--f-script); color: var(--c-primary); margin: 0; line-height: 0.98; font-weight: 700; }
-        .cover-names span { display: block; font-size: clamp(2.4rem, 9vw, 3.5rem); }
-        .cover-names em { font-family: var(--f-serif); font-style: italic; font-size: 1rem; color: var(--c-accent); }
+        .cover-names { font-family: var(--f-script); color: var(--c-primary); margin: 0; line-height: 1.08; font-weight: 700; }
+        .cover-names span { display: block; font-size: clamp(1.75rem, 6vw, 2.4rem); }
+        .cover-names em { font-family: var(--f-serif); font-style: italic; font-size: 0.95rem; color: var(--c-accent); display: block; margin: 1px 0; }
         .cover-invite { font-family: var(--f-serif); color: var(--c-ink); font-size: 1.2rem; margin: 2px 0 6px; }
         .cover-choose-note {
           font-family: var(--f-body); color: var(--c-ink-soft);
@@ -204,5 +198,5 @@ export default function Cover({ data, onOpen, closing }) {
         .loc-btn:nth-child(2) .shine { animation-delay: 1.4s; }
       `}</style>
     </div>
-  )
+  );
 }
