@@ -1,14 +1,14 @@
-import { Fragment } from 'react'
-import { Reveal, SectionTitle } from '../common'
-import { labels } from '../../data/invitation'
+import { Fragment } from 'react';
+import { Reveal, SectionTitle } from '../common';
+import { labels } from '../../data/invitation';
 
 /** Thông tin hai bên gia đình — gộp trong MỘT khung liền mạch (nhà trai · nhà gái). */
 export default function CoupleInfo({ data }) {
-  const { families } = data
+  const { families } = data;
   const sides = [
     { key: 'groom', title: 'NHÀ TRAI', info: families.groom },
     { key: 'bride', title: 'NHÀ GÁI', info: families.bride },
-  ]
+  ];
 
   return (
     <section className="section">
@@ -24,7 +24,9 @@ export default function CoupleInfo({ data }) {
                 <h3>{s.title}</h3>
                 <p>{s.info.father}</p>
                 <p>{s.info.mother}</p>
-                {s.info.address ? <p className="winfo-addr">{s.info.address}</p> : null}
+                {s.info.address ? (
+                  <p className="winfo-addr">{s.info.address}</p>
+                ) : null}
               </div>
               {i === 0 && (
                 <div className="winfo-sep" aria-hidden>
@@ -62,7 +64,7 @@ export default function CoupleInfo({ data }) {
           font-family: var(--f-body); letter-spacing: 0.2em;
           color: var(--c-accent); font-size: 0.85rem; margin: 0 0 12px;
         }
-        .winfo-side p { margin: 5px 0; font-family: var(--f-serif); font-size: 1.18rem; color: var(--c-ink); line-height: 1.4; }
+        .winfo-side p { margin: 5px 0; font-family: var(--f-serif); font-size: 1.18rem; font-weight: 500; color: var(--c-ink); line-height: 1.4; }
         .winfo-addr { color: var(--c-ink-soft) !important; font-size: 0.92rem !important; margin-top: 8px !important; }
 
         /* vạch ngăn giữa 2 nhà + hoa văn ❦ ở tâm */
@@ -86,5 +88,5 @@ export default function CoupleInfo({ data }) {
         }
       `}</style>
     </section>
-  )
+  );
 }
