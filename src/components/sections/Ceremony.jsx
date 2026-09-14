@@ -99,7 +99,7 @@ export default function Ceremony({ data, eventIdx }) {
         .person { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; }
         /* Khung ảnh tròn — thả ảnh vào public/couple/ (chưa có sẽ hiện khung trống + ♥) */
         .photo {
-          width: clamp(92px, 26vw, 150px); aspect-ratio: 1;
+          width: clamp(92px, 26vw, 200px); aspect-ratio: 1;
           border-radius: 50%; overflow: hidden; position: relative;
           border: 3px solid var(--c-accent);
           box-shadow: 0 8px 22px rgba(74, 58, 40, 0.28);
@@ -125,7 +125,7 @@ export default function Ceremony({ data, eventIdx }) {
         .couple .amp {
           font-family: var(--f-serif); font-style: italic; color: var(--c-accent);
           font-size: 1.6rem; flex: 0 0 auto;
-          margin-top: clamp(26px, 10vw, 66px); /* canh ngang tâm khung ảnh */
+          margin-top: clamp(26px, 10vw, 85px); /* canh ngang tâm khung ảnh */
         }
         .when-place { color: var(--c-ink-soft); margin: 0; font-size: 0.95rem; }
         .when-place-name { font-family: var(--f-serif); font-size: 1.35rem; color: var(--c-primary); margin: 6px 0 18px; }

@@ -63,6 +63,43 @@ export function downloadICS({
   URL.revokeObjectURL(url)
 }
 
+/**
+ * Xây URL "Thêm vào lịch" của Google Calendar — mở thẳng màn hình lưu sự kiện
+ * (web hoặc app Google Calendar) đã điền sẵn tên/giờ/địa điểm, không cần tải
+ * file hay backend. Theo đúng format Google dùng:
+ *   calendar.google.com/calendar/u/0/r/eventedit?text=..&dates=START/END(UTC)&ctz=..&details=..&location=..
+ * `startISO` nên có sẵn offset múi giờ (vd '2026-11-22T18:00:00+07:00') để
+ * quy đổi UTC luôn đúng bất kể khách xem thiệp ở múi giờ nào.
+ * @param {{title:string, startISO:string, durationHours?:number, location?:string, description?:string, timezone?:string}} opts
+ * @returns {string} URL, hoặc '#' nếu startISO không hợp lệ.
+ */
+export function buildGoogleCalendarUrl({
+  title,
+  startISO,
+  durationHours = 2,
+  location = '',
+  description = '',
+  timezone = 'Asia/Ho_Chi_Minh',
+}) {
+  const start = new Date(startISO)
+  if (Number.isNaN(start.getTime())) return '#'
+  const end = new Date(start.getTime() + durationHours * 3600 * 1000)
+
+  // Google Calendar cần UTC dạng "YYYYMMDDTHHMMSSZ" (bỏ dấu -, :, phần mili giây).
+  const toGCalUTC = (d) => d.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
+
+  // Ghép tay (không dùng URLSearchParams) để giữ dấu "/" trong "dates" ở dạng
+  // thô như Google phát hành, thay vì bị encode thành "%2F".
+  return (
+    'https://calendar.google.com/calendar/u/0/r/eventedit' +
+    `?text=${encodeURIComponent(title)}` +
+    `&dates=${toGCalUTC(start)}/${toGCalUTC(end)}` +
+    `&ctz=${encodeURIComponent(timezone)}` +
+    `&details=${encodeURIComponent(description)}` +
+    `&location=${encodeURIComponent(location)}`
+  )
+}
+
 /** Ngày dạng dd/MM/yyyy HH:mm cho lời chúc. */
 export function formatNow() {
   const d = new Date()

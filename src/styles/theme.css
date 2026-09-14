@@ -39,6 +39,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Smooth-scroll quán tính (Lenis) — chỉ bật ở desktop, xem useSmoothScroll.js.
+   Lenis tự gắn/gỡ các class này vào <html> khi hoạt động; CSS theo đúng
+   khuyến nghị của thư viện để tránh xung đột với scroll-behavior ở trên. */
+html.lenis, html.lenis body {
+  height: auto;
+}
+html.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+html.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 body {
   margin: 0;
   font-family: var(--f-body);
@@ -128,6 +141,8 @@ img {
   padding: 13px 30px;
   font-size: 1rem;
   font-weight: 500;
+  display: inline-block; /* để .btn dùng trên thẻ <a> (vd link mở Google Calendar) không bị vỡ layout */
+  text-decoration: none;
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { invitation } from './data/invitation';
+import { useSmoothScroll, scrollToTop } from './hooks/useSmoothScroll';
 
 import Cover from './components/Cover';
 import MusicToggle from './components/MusicToggle';
@@ -26,6 +27,8 @@ export default function App() {
   const [eventIdx, setEventIdx] = useState(0); // địa điểm khách chọn ở cover
   const audioRef = useRef(null);
 
+  useSmoothScroll(); // cuộn mượt kiểu quán tính, chỉ bật ở desktop
+
   // Khoá cuộn cho tới khi vào thiệp chính.
   useEffect(() => {
     document.body.style.overflow = phase === 'open' ? '' : 'hidden';
@@ -40,7 +43,7 @@ export default function App() {
     setPhase('opening');
     audioRef.current?.play?.().catch(() => {});
     window.setTimeout(() => {
-      window.scrollTo(0, 0);
+      scrollToTop();
       setPhase('open');
     }, OPEN_ANIM_MS);
   };

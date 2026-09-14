@@ -1,6 +1,6 @@
 import { Reveal, SectionTitle } from '../common'
 import { labels } from '../../data/invitation'
-import { downloadICS } from '../../utils/helpers'
+import { buildGoogleCalendarUrl } from '../../utils/helpers'
 
 /** Lịch tháng tô đậm ngày cưới. */
 function MiniCalendar({ year, month, day }) {
@@ -33,14 +33,14 @@ function MiniCalendar({ year, month, day }) {
 export default function Reception({ data, event }) {
   const r = event
 
-  const addToCalendar = () =>
-    downloadICS({
-      title: `Tiệc cưới ${data.groom.shortName} & ${data.bride.shortName} (${r.label})`,
-      startISO: r.iso,
-      durationHours: 3,
-      location: `${r.venue}, ${r.address}`,
-      description: 'Trân trọng kính mời!',
-    })
+  // Mỗi địa điểm (r) có giờ/địa chỉ riêng nên link tạo ra cũng khác nhau tương ứng.
+  const calendarUrl = buildGoogleCalendarUrl({
+    title: `Đám cưới ${data.groom.shortName} & ${data.bride.shortName}`,
+    startISO: r.iso,
+    durationHours: 2,
+    location: `${r.venue}, ${r.address}`,
+    description: `Tiệc cưới của ${data.groom.shortName} & ${data.bride.shortName} tại ${r.venue}, ${r.address}`,
+  })
 
   return (
     <section className="section">
@@ -70,11 +70,14 @@ export default function Reception({ data, event }) {
         <img className="deco deco-rec-br deco-mirror" src="/decor/decor5-clean.png" alt="" aria-hidden="true" />
       </Reveal>
 
-      <Reveal variant="right">
+      <Reveal className="panel cal-panel" variant="right">
         <MiniCalendar year={r.year} month={r.month} day={r.day} />
-        <div style={{ textAlign: 'center', marginTop: 20 }}>
-          <button className="btn btn-outline" onClick={addToCalendar}>＋ Thêm vào lịch</button>
-        </div>
+        <a className="btn btn-outline cal-btn" href={calendarUrl} target="_blank" rel="noopener noreferrer">
+          ＋ Thêm vào lịch
+        </a>
+
+        {/* Hoa văn góc — nhành lá xanh nhỏ, đổi màu cho đỡ lặp với card phía trên */}
+        <img className="deco deco-cal" src="/decor/decor4-clean.png" alt="" aria-hidden="true" />
       </Reveal>
 
       <style>{`
@@ -92,8 +95,23 @@ export default function Reception({ data, event }) {
         .rec-times { display: flex; justify-content: center; gap: 28px; margin-top: 16px; font-family: var(--f-serif); color: var(--c-ink); }
         .rec-times b { color: var(--c-primary); }
 
-        .cal { max-width: 320px; margin: 30px auto 0; }
-        .cal-title { text-align: center; font-family: var(--f-serif); color: var(--c-primary); font-size: 1.15rem; margin: 0 0 10px; }
+        .cal-panel {
+          margin: 30px auto 0;
+          max-width: 360px;
+          text-align: center;
+          box-shadow: 0 12px 30px rgba(74, 58, 40, 0.1);
+        }
+        .deco-cal {
+          width: clamp(50px, 11vw, 84px);
+          top: clamp(-18px, -4vw, -8px); right: clamp(-16px, -3.5vw, -6px);
+        }
+        .cal { max-width: 100%; margin: 0; }
+        .cal-btn { display: inline-block; margin-top: 22px; }
+        .cal-title {
+          text-align: center; font-family: var(--f-serif); color: var(--c-primary);
+          font-size: 1.15rem; margin: 0 0 14px; padding-bottom: 10px;
+          border-bottom: 1px solid rgba(201, 161, 90, 0.3);
+        }
         .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
         .cal-h { text-align: center; font-size: 0.72rem; color: var(--c-accent); padding: 4px 0; font-weight: 600; }
         .cal-d { text-align: center; padding: 7px 0; font-size: 0.9rem; color: var(--c-ink); border-radius: 50%; }

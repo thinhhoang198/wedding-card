@@ -87,7 +87,7 @@ export const invitation = {
       mapQuery:
         'Trung Tâm Hội Nghị Âu Lạc Thịnh, 99 Nguyễn Thị Minh Khai, Nha Trang',
       iso: '2026-11-22T18:00:00+07:00',
-      welcomeTime: '17:30',
+      welcomeTime: '17:00',
       startTime: '18:00',
       weekday: 'Chủ Nhật',
       day: '22',
@@ -112,7 +112,7 @@ export const invitation = {
       mapQuery:
         'Cung Văn hóa Lao động Hữu nghị Việt Xô, 91 Trần Hưng Đạo, Hà Nội',
       iso: '2026-11-29T18:00:00+07:00',
-      welcomeTime: '17:30',
+      welcomeTime: '17:00',
       startTime: '18:00',
       weekday: 'Chủ Nhật',
       day: '29',
