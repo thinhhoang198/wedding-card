@@ -9,7 +9,7 @@ export default function Hero({ data, eventIdx }) {
   return (
     <section className="section hero">
       <Reveal variant="fade">
-        <p className="hero-sub">Save The Date</p>
+        <p className="hero-sub">The Wedding of</p>
         <h1 className="hero-names">
           <span className="n-groom">{groom.shortName}</span>
           <em>&amp;</em>

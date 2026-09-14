@@ -202,6 +202,7 @@ export const invitation = {
 // Nhãn tiêu đề các mục (dùng chung toàn thiệp)
 export const labels = {
   saveTheDate: { vi: 'Save The Date' },
+  theWeddingOf: { vi: 'The Wedding of' },
   weddingInfo: { vi: 'Thông Tin Lễ Cưới' },
   announce: { vi: 'Trân Trọng Báo Tin' },
   ceremony: { vi: 'Lễ Thành Hôn' },
