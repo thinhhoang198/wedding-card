@@ -65,10 +65,22 @@ export default function Ceremony({ data, eventIdx }) {
           </div>
         </div>
         <p className="lunar">({currentCeremony.lunar})</p>
+
+        {/* Hoa văn góc — nhành hồng góc trên phải, lá vàng góc dưới trái (lơ lửng nhẹ) */}
+        <img className="deco deco-cer-tr deco-mirror" src="/decor/decor-clean.png" alt="" aria-hidden="true" />
+        <img className="deco deco-cer-bl" src="/decor/decor5-clean.png" alt="" aria-hidden="true" />
       </Reveal>
 
       <style>{`
         .ceremony { text-align: center; }
+        .deco-cer-tr {
+          width: clamp(64px, 14vw, 116px);
+          top: clamp(-20px, -4vw, -8px); right: clamp(-18px, -4vw, -6px);
+        }
+        .deco-cer-bl {
+          width: clamp(56px, 12vw, 98px);
+          bottom: clamp(-20px, -4vw, -8px); left: clamp(-16px, -3.5vw, -6px);
+        }
         .announce { letter-spacing: 0.25em; color: var(--c-ink-soft); font-size: 0.8rem; margin: 0 0 6px; }
         .couple {
           display: flex; align-items: flex-start; justify-content: center;

@@ -33,6 +33,7 @@ export default function GiftBox({ data }) {
         <button className="gift-box" onClick={() => setOpen(true)}>
           <span className="gift-emoji float">🎁</span>
           <span className="gift-hint">Nhấn để mở</span>
+          <img className="deco deco-gift" src="/decor/decor-clean.png" alt="" aria-hidden="true" />
         </button>
       </Reveal>
 
@@ -67,12 +68,17 @@ export default function GiftBox({ data }) {
 
       <style>{`
         .gift-box {
+          position: relative; z-index: 0;
           background: var(--c-cream-2); border: 1px dashed var(--c-accent);
           border-radius: var(--radius); padding: 30px 44px; cursor: pointer;
           display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
           transition: transform 0.2s;
         }
         .gift-box:hover { transform: translateY(-3px); }
+        .deco-gift {
+          width: clamp(40px, 9vw, 68px);
+          top: clamp(-14px, -3vw, -4px); right: clamp(-12px, -2.6vw, -2px);
+        }
         .gift-emoji { font-size: 3rem; }
         .gift-hint { color: var(--c-ink-soft); letter-spacing: 0.1em; font-size: 0.9rem; }
 

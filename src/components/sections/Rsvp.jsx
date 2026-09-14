@@ -34,6 +34,9 @@ export default function Rsvp({ data, event }) {
         <h3>{r.venue}</h3>
         <p className="venue-addr">{r.address}</p>
         <button className="btn btn-outline" onClick={() => openMap(r.mapQuery)}>📍 Chỉ đường</button>
+
+        {/* Hoa văn góc — 1 nhành nhỏ, sát góc dưới trái */}
+        <img className="deco deco-venue" src="/decor/decor5-clean.png" alt="" aria-hidden="true" />
       </Reveal>
 
       <Reveal className="panel rsvp-form" variant="right">
@@ -72,6 +75,10 @@ export default function Rsvp({ data, event }) {
 
       <style>{`
         .venue { text-align: center; margin-bottom: 18px; }
+        .deco-venue {
+          width: clamp(44px, 10vw, 76px);
+          bottom: clamp(-16px, -3.5vw, -6px); left: clamp(-14px, -3vw, -4px);
+        }
         .venue-lead { color: var(--c-ink-soft); margin: 0 0 8px; font-size: 0.95rem; }
         .venue h3 { font-family: var(--f-serif); color: var(--c-primary); font-size: 1.35rem; margin: 0 0 8px; }
         .venue-addr { color: var(--c-ink-soft); font-size: 0.92rem; margin: 0 0 16px; }

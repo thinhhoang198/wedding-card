@@ -8,9 +8,13 @@ export default function ThankYou({ data }) {
   return (
     <section className="section ty">
       <Reveal variant="zoom">
-        <div className="ty-photo pf">
-          <img ref={photoRef} src={data.photos.thankYou} alt="" onError={(e) => { e.currentTarget.style.opacity = 0 }} />
-          <span className="pf-hint">Ảnh cưới</span>
+        <div className="ty-photo-frame">
+          <div className="ty-photo pf">
+            <img ref={photoRef} src={data.photos.thankYou} alt="" onError={(e) => { e.currentTarget.style.opacity = 0 }} />
+            <span className="pf-hint">Ảnh cưới</span>
+          </div>
+          {/* Hoa văn — nhành lá nhỏ, rủ xuống góc dưới trái khung ảnh */}
+          <img className="deco deco-ty deco-over" src="/decor/decor4-clean.png" alt="" aria-hidden="true" />
         </div>
         <div className="ty-heart float" aria-hidden>♥</div>
         <p className="ty-msg">{thankYou}</p>
@@ -20,10 +24,18 @@ export default function ThankYou({ data }) {
 
       <style>{`
         .ty { text-align: center; padding-bottom: calc(var(--gap) + 10px); }
+        .ty-photo-frame {
+          position: relative; z-index: 0;
+          width: min(260px, 66%); margin: 0 auto 22px;
+        }
         .ty-photo {
-          width: min(260px, 66%); aspect-ratio: 1; margin: 0 auto 22px;
+          width: 100%; aspect-ratio: 1;
           border-radius: 50%; border: 3px solid var(--c-accent);
           box-shadow: 0 12px 26px rgba(74, 58, 40,0.2);
+        }
+        .deco-ty {
+          width: clamp(40px, 9vw, 70px);
+          bottom: clamp(-8px, -1.5vw, 2px); left: clamp(-16px, -3.5vw, -4px);
         }
         .ty-heart {
           width: 54px; height: 54px; margin: 0 auto 18px; border-radius: 50%;

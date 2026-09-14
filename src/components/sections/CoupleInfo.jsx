@@ -41,12 +41,21 @@ export default function CoupleInfo({ data }) {
       <style>{`
         .winfo {
           position: relative;
+          z-index: 0;
           max-width: 560px; margin: 0 auto;
           border: 1px solid rgba(201, 161, 90, 0.65);
           border-radius: 18px;
           background: var(--c-cream-2);
           padding: clamp(26px, 5vw, 38px) clamp(20px, 4vw, 32px);
           box-shadow: 0 12px 30px rgba(74, 58, 40, 0.1);
+        }
+        .deco-ci-tl {
+          width: clamp(64px, 14vw, 118px);
+          top: clamp(-20px, -4vw, -8px); left: clamp(-18px, -4vw, -6px);
+        }
+        .deco-ci-br {
+          width: clamp(56px, 12vw, 100px);
+          bottom: clamp(-20px, -4vw, -8px); right: clamp(-16px, -3.5vw, -6px);
         }
         /* viền đôi mảnh bên trong cho cảm giác thiệp trang trọng */
         .winfo::before {

@@ -64,6 +64,10 @@ export default function Reception({ data, event }) {
           <span>Đón khách <b>{r.welcomeTime}</b></span>
           <span>Khai tiệc <b>{r.startTime}</b></span>
         </div>
+
+        {/* Hoa văn góc — nhành hồng góc trên trái, lá vàng góc dưới phải */}
+        <img className="deco deco-rec-tl" src="/decor/decor-clean.png" alt="" aria-hidden="true" />
+        <img className="deco deco-rec-br deco-mirror" src="/decor/decor5-clean.png" alt="" aria-hidden="true" />
       </Reveal>
 
       <Reveal variant="right">
@@ -75,6 +79,14 @@ export default function Reception({ data, event }) {
 
       <style>{`
         .rec { text-align: center; }
+        .deco-rec-tl {
+          width: clamp(56px, 12vw, 98px);
+          top: clamp(-20px, -4vw, -8px); left: clamp(-16px, -3.5vw, -6px);
+        }
+        .deco-rec-br {
+          width: clamp(64px, 14vw, 116px);
+          bottom: clamp(-20px, -4vw, -8px); right: clamp(-18px, -4vw, -6px);
+        }
         .rec-venue { font-family: var(--f-serif); color: var(--c-primary); font-size: 1.3rem; margin: 0 0 12px; }
         .rec-lead { color: var(--c-ink-soft); margin: 0 0 14px; }
         .rec-times { display: flex; justify-content: center; gap: 28px; margin-top: 16px; font-family: var(--f-serif); color: var(--c-ink); }

@@ -12,12 +12,12 @@ export default function Cover({ data, onOpen, closing }) {
   return (
     <div className={`cover ${closing ? 'is-closing' : ''}`}>
       <div className="cover-card">
-        {/* hoa trang trí 2 góc dưới (bên phải lật gương cho cân đối) */}
+        {/* hoa trang trí 2 góc trên (bên phải lật gương cho cân đối) */}
         <span className="flower flower-l" aria-hidden>
-          <img className="flower-img" src="/decor/flower.webp" alt="" />
+          <img className="flower-img" src="/decor/decor1.png" alt="" />
         </span>
         <span className="flower flower-r" aria-hidden>
-          <img className="flower-img" src="/decor/flower.webp" alt="" />
+          <img className="flower-img" src="/decor/decor1.png" alt="" />
         </span>
 
         <div className="cover-inner">
@@ -130,10 +130,10 @@ export default function Cover({ data, onOpen, closing }) {
         }
         .cover-inner .divider { margin: 6px auto 12px; }
 
-        /* hoa trang trí 2 góc dưới (khung bọc để chồng lớp echo theo hình hoa) */
+        /* hoa trang trí 2 góc trên (khung bọc để chồng lớp echo theo hình hoa) */
         .flower {
-          position: absolute; bottom: -2px; z-index: 1;
-          height: min(66%, 320px); aspect-ratio: 811 / 1938;
+          position: absolute; top: -2px; z-index: 1;
+          width: min(46%, 200px); aspect-ratio: 1 / 1;
           pointer-events: none; user-select: none;
         }
         .flower-img {
@@ -141,18 +141,20 @@ export default function Cover({ data, onOpen, closing }) {
           position: relative; z-index: 1;
           filter: drop-shadow(0 6px 12px rgba(0,0,0,0.18));
         }
-        .flower-l { left: -10px; }
-        .flower-r { right: -10px; transform: scaleX(-1); } /* lật gương cả khung (cả echo), KHÔNG xoay */
-        @media (max-width: 420px) { .flower { height: 56%; } }
+        .flower-l { left: -2px; }
+        .flower-r { right: -2px; transform: scaleX(-1); } /* lật gương cả khung (cả echo), KHÔNG xoay */
+        @media (max-width: 420px) { .flower { width: 44%; } }
 
-        /* 2 lớp "bóng hoa" nằm sau hoa thật, dùng mask để đúng viền hoa;
-           khi mở sẽ phóng to dần từ chính nó rồi mờ đi = echo theo hình hoa */
+        /* 2 lớp "bóng hoa" nằm sau hoa thật, dùng mask ĐÚNG hình decor1.png (ảnh hoa hiện tại)
+           để viền echo khớp tuyệt đối với viền hoa thật; mask-mode: alpha để lấy theo kênh
+           trong suốt của PNG (tránh trình duyệt tính theo độ sáng làm lá/xanh rêu bị mờ sai) */
         .flower::before, .flower::after {
           content: ''; position: absolute; inset: 0; z-index: 0;
           background: var(--c-primary-soft);
-          -webkit-mask: url('/decor/flower.webp') no-repeat center / contain;
-          mask: url('/decor/flower.webp') no-repeat center / contain;
-          transform-origin: center bottom;
+          -webkit-mask: url('/decor/decor1.png') no-repeat center / contain;
+          mask: url('/decor/decor1.png') no-repeat center / contain;
+          -webkit-mask-mode: alpha; mask-mode: alpha;
+          transform-origin: center top;
           opacity: 0; pointer-events: none;
         }
 
