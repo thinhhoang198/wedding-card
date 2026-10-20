@@ -60,10 +60,6 @@ export default function Reception({ data, event }) {
         </div>
         <p className="lunar">({r.lunar})</p>
 
-        <div className="rec-times">
-          <span>Đón khách <b>{r.welcomeTime}</b></span>
-          <span>Khai tiệc <b>{r.startTime}</b></span>
-        </div>
 
         {/* Hoa văn góc — nhành hồng góc trên trái, lá vàng góc dưới phải */}
         <img className="deco deco-rec-tl" src="/decor/decor-clean.png" alt="" aria-hidden="true" />

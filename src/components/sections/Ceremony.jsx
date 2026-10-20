@@ -3,15 +3,19 @@ import { labels } from '../../data/invitation';
 
 /** Trân trọng báo tin — Lễ thành hôn: chú rể & cô dâu, nơi & giờ cử hành. */
 export default function Ceremony({ data, eventIdx }) {
-  const { groom, bride, ceremony, events } = data;
+  const { groom, bride, events } = data;
   const currentEvent = events[eventIdx] || events[0];
-  const currentCeremony = currentEvent?.ceremony || ceremony;
+  // Chỉ có Hôn lễ ở địa điểm nào khai báo `ceremony` (hiện: Nha Trang); nơi khác ẩn hẳn.
+  const currentCeremony = currentEvent?.ceremony;
 
   return (
     <section className="section ceremony">
       <Reveal>
         <p className="announce">TRÂN TRỌNG BÁO TIN</p>
-        <SectionTitle label={labels.ceremony} bilingual={data.bilingual} />
+        <SectionTitle
+          label={currentCeremony ? labels.ceremony : labels.couple}
+          bilingual={data.bilingual}
+        />
       </Reveal>
 
       <Reveal className="couple" variant="zoom">
@@ -44,6 +48,7 @@ export default function Ceremony({ data, eventIdx }) {
         </div>
       </Reveal>
 
+      {currentCeremony && (
       <Reveal className="panel when">
         <p className="when-place">Hôn lễ được cử hành tại</p>
         <p className="when-place-name">{currentCeremony.place}</p>
@@ -80,6 +85,7 @@ export default function Ceremony({ data, eventIdx }) {
           aria-hidden="true"
         />
       </Reveal>
+      )}
 
       <style>{`
         .ceremony { text-align: center; }

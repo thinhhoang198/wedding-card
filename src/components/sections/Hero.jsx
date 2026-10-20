@@ -5,7 +5,7 @@ import { useParallax } from '../../hooks/useParallax';
 export default function Hero({ data, eventIdx }) {
   const { groom, bride, events } = data;
   const date = events[eventIdx];
-  const photoRef = useParallax({ speed: 0.24, scale: 1.25 });
+  const photoRef = useParallax({ speed: 0.24, scale: 1.16, fromTop: true });
   return (
     <section className="section hero">
       <Reveal variant="fade">

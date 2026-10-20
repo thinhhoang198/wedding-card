@@ -38,7 +38,7 @@ export function useSmoothScroll() {
     const start = () => {
       if (lenisInstance) return
       lenisInstance = new Lenis({
-        duration: 0.7, // rút ngắn từ 1.1s — phản hồi nhanh tay hơn, đỡ chóng mặt
+        duration: 0.4, // 1.1s → 0.7s → 0.4s: dừng nhanh hơn, ít "trôi" sau khi ngừng lăn chuột
         easing: (t) => 1 - Math.pow(1 - t, 2), // ease-out quadratic — dứt khoát hơn cubic
         wheelMultiplier: 1,
         autoRaf: true, // Lenis tự chạy requestAnimationFrame, không cần tự quản lý

@@ -16,32 +16,32 @@ export const invitation = {
     name: 'Hoàng Đức Thịnh',
     shortName: 'Đức Thịnh',
     role: 'Út Nam', // Trưởng nam / Thứ nam / Út nam... (sửa nếu khác)
-    photo: '/couple/chu-re.jpg', // ảnh chú rể — đặt vào public/couple/ (chưa có sẽ hiện khung trống)
+    photo: '/couple/chu-re1.jpg', // ảnh chú rể (Nha Trang)
   },
   bride: {
     name: 'Nguyễn Cao Thùy Duyên',
     shortName: 'Thùy Duyên',
     role: 'Trưởng Nữ', // (sửa nếu khác)
-    photo: '/couple/co-dau.jpg', // ảnh cô dâu — đặt vào public/couple/
+    photo: '/couple/co-dau1.jpg', // ảnh cô dâu — đặt vào public/couple/
   },
 
   // ---- Ảnh cưới rải khắp thiệp (triển lãm ảnh) --------------------------
-  // Đặt ảnh vào public/couple/. Chưa có ảnh sẽ hiện khung "Ảnh" placeholder.
+  // MỘT bộ ảnh chung cho cả 2 địa điểm (Hà Nội / Nha Trang dùng giống hệt nhau).
   photos: {
-    hero: '/couple/hero.jpg', // ảnh lớn khung vòm ở đầu thiệp
+    hero: '/couple/hero-hanoi.jpg', // ảnh lớn khung vòm ở đầu thiệp (Hà Nội)
     // 2 dải ảnh full-width điện ảnh (kèm câu chú thích)
     band1: {
-      src: '/couple/band-1.jpg',
+      src: '/couple/band-1.jpg', // Nha Trang
       caption: 'Chuyện của chúng mình bắt đầu…',
     },
-    band2: { src: '/couple/band-2.jpg', caption: 'Và mãi mãi về sau' },
-    thankYou: '/couple/cam-on.jpg', // ảnh cuối, trước lời cảm ơn
+    band2: { src: '/couple/band-hanoi-2.jpg', caption: 'Và mãi mãi về sau' }, // Hà Nội
+    thankYou: '/couple/cam-on.jpg', // ảnh cuối, trước lời cảm ơn (Nha Trang)
     partyBg: '/couple/tiec-bg.jpg', // ảnh nền mờ sau mục Tiệc cưới + RSVP (ngang)
   },
 
   // ---- Ngày cưới ---------------------------------------------------------
   weddingDate: {
-    iso: '2026-11-29T18:00:00+07:00', // dùng cho đếm ngược & file lịch (.ics)
+    iso: '2026-11-29T17:30:00+07:00', // dùng cho đếm ngược & file lịch (.ics)
     solar: '29 tháng 11, 2026',
     weekday: 'Chủ Nhật',
     day: '29',
@@ -64,20 +64,8 @@ export const invitation = {
     },
   },
 
-  // ---- Lễ thành hôn (tại tư gia) ----------------------------------------
-  // LƯU Ý: bạn chưa cung cấp thông tin lễ tại gia — 'place' & 'time' đang là
-  // placeholder, hãy sửa lại (hoặc bỏ mục này nếu chỉ tổ chức tiệc).
-  ceremony: {
-    place: 'Tư Gia Nhà Trai',
-    time: '09:00',
-    weekday: 'Chủ Nhật',
-    day: '29',
-    month: '11',
-    year: '2026',
-    lunar: 'Tức ngày 21 tháng 10 năm Bính Ngọ',
-  },
-
-  // ---- Tiệc cưới — 2 nơi (hiển thị dạng 2 tab: Hà Nội / Nha Trang) -------
+  // ---- Tiệc cưới — 2 nơi (khách chọn Hà Nội / Nha Trang ở màn cover) ------
+  // `ceremony` (Hôn lễ tại tân gia) chỉ có ở Nha Trang; Hà Nội không có → mục đó tự ẩn.
   events: [
     {
       id: 'nhatrang',
@@ -86,17 +74,17 @@ export const invitation = {
       address: '99 Nguyễn Thị Minh Khai, Phường Nha Trang, Khánh Hòa',
       mapQuery:
         'Trung Tâm Hội Nghị Âu Lạc Thịnh, 99 Nguyễn Thị Minh Khai, Nha Trang',
-      iso: '2026-11-22T18:00:00+07:00',
-      welcomeTime: '17:00',
-      startTime: '18:00',
+      iso: '2026-11-22T17:30:00+07:00',
+      welcomeTime: '17:30',
+      startTime: '17:30',
       weekday: 'Chủ Nhật',
       day: '22',
       month: '11',
       year: '2026',
       lunar: 'Tức ngày 14 tháng 10 năm Bính Ngọ',
       ceremony: {
-        place: 'Tư Gia Nhà Gái',
-        time: '09:00',
+        place: 'Tân Gia Nhà Gái',
+        time: '15:00',
         weekday: 'Chủ Nhật',
         day: '22',
         month: '11',
@@ -111,29 +99,20 @@ export const invitation = {
       address: '91 Trần Hưng Đạo, Phường Cửa Nam, Thành phố Hà Nội',
       mapQuery:
         'Cung Văn hóa Lao động Hữu nghị Việt Xô, 91 Trần Hưng Đạo, Hà Nội',
-      iso: '2026-11-29T18:00:00+07:00',
-      welcomeTime: '17:00',
-      startTime: '18:00',
+      iso: '2026-11-29T17:30:00+07:00',
+      welcomeTime: '17:30',
+      startTime: '17:30',
       weekday: 'Chủ Nhật',
       day: '29',
       month: '11',
       year: '2026',
       lunar: 'Tức ngày 21 tháng 10 năm Bính Ngọ',
-      ceremony: {
-        place: 'Tư Gia Nhà Trai',
-        time: '09:00',
-        weekday: 'Chủ Nhật',
-        day: '29',
-        month: '11',
-        year: '2026',
-        lunar: 'Tức ngày 21 tháng 10 năm Bính Ngọ',
-      },
     },
   ],
 
   // ---- Lịch trình ngày cưới ---------------------------------------------
   timeline: [
-    { time: '17:00', label: 'Đón khách' },
+    { time: '17:30', label: 'Đón khách' },
     { time: '18:00', label: 'Khai tiệc' },
     { time: '18:30', label: 'Nghi thức cưới' },
     { time: '19:00', label: 'Cắt bánh & nâng ly' },
@@ -148,13 +127,25 @@ export const invitation = {
 
   // ---- Album ảnh ---------------------------------------------------------
   // Đặt ảnh vào public/album/ rồi liệt kê đường dẫn ở đây.
+  // Album chung cho cả 2 địa điểm: public/album/1–10 = Nha Trang · 11–17 = Hà Nội (xen kẽ).
   gallery: [
     '/album/1.jpg',
+    '/album/16.jpg',
     '/album/2.jpg',
+    '/album/11.jpg',
     '/album/3.jpg',
+    '/album/12.jpg',
     '/album/4.jpg',
+    '/album/13.jpg',
     '/album/5.jpg',
+    '/album/14.jpg',
     '/album/6.jpg',
+    '/album/15.jpg',
+    '/album/7.jpg',
+    '/album/17.jpg',
+    '/album/8.jpg',
+    '/album/9.jpg',
+    '/album/10.jpg',
   ],
 
   // ---- Hộp quà mừng (chuyển khoản) --------------------------------------
@@ -206,6 +197,7 @@ export const labels = {
   weddingInfo: { vi: 'Thông Tin Lễ Cưới' },
   announce: { vi: 'Trân Trọng Báo Tin' },
   ceremony: { vi: 'Lễ Thành Hôn' },
+  couple: { vi: 'Đôi Uyên Ương' }, // tiêu đề thay thế khi địa điểm không có Hôn lễ (Hà Nội)
   album: { vi: 'Album Ảnh' },
   reception: { vi: 'Thông Tin Tiệc Cưới' },
   rsvp: { vi: 'Xác Nhận Tham Dự' },

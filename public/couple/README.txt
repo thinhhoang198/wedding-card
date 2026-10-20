@@ -1,12 +1,11 @@
-Đặt ảnh cưới vào thư mục này (public/couple/):
+﻿Ảnh cưới dùng chung cho cả 2 địa điểm (khai báo trong src/data/invitation.js):
 
-- chu-re.jpg    : ảnh chú rể (khung tròn Lễ Thành Hôn + khung Nhà Trai)
-- co-dau.jpg    : ảnh cô dâu (khung tròn Lễ Thành Hôn + khung Nhà Gái)
-- hero.jpg      : ảnh lớn khung vòm ở đầu thiệp (dọc 3:4 đẹp nhất)
-- band-1.jpg    : dải ảnh full-width sau Lễ Thành Hôn (ngang)
-- band-2.jpg    : dải ảnh full-width trước Lời cảm ơn (ngang)
-- cam-on.jpg    : ảnh tròn cuối thiệp (vuông 1:1)
+- hero-hanoi.jpg   : Hero khung vòm đầu thiệp (Hà Nội)
+- chu-re1.jpg      : ảnh tròn chú rể (Nha Trang)
+- co-dau1.jpg      : ảnh tròn cô dâu (Nha Trang)
+- band-1.jpg       : dải ảnh 1 (Nha Trang)
+- band-hanoi-2.jpg : dải ảnh 2 (Hà Nội)
+- cam-on.jpg       : ảnh tròn cuối thiệp (Nha Trang)
+- tiec-bg.jpg      : nền mờ Tiệc cưới + RSVP (Nha Trang)
 
-Chưa có ảnh nào thì chỗ đó hiện khung 'Ảnh' placeholder, không vỡ layout.
-Muốn đổi tên/đường dẫn: sửa trong src/data/invitation.js.
-- tiec-bg.jpg   : ảnh nền mờ sau mục Tiệc cưới + RSVP (ngang)
+Album: public/album/1-10 (Nha Trang) + 11-17 (Hà Nội), xen kẽ.

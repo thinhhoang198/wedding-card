@@ -247,14 +247,13 @@ img {
   position: relative;
   z-index: 1;
 }
-.party-bg-img {
+/* Khung bọc: cắt phần ảnh bị phóng (parallax) + fade mép; ảnh bên trong mới là phần trôi */
+.party-bg-clip {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
   pointer-events: none;
-  background-size: cover;
-  background-position: center;
-  filter: blur(3px);
   opacity: 0.26;
   /* fade nhẹ ở mép trên/dưới để hoà vào nền giấy */
   -webkit-mask: linear-gradient(
@@ -265,6 +264,13 @@ img {
     transparent
   );
   mask: linear-gradient(to bottom, transparent, #000 9%, #000 91%, transparent);
+}
+.party-bg-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px);
 }
 
 /* ==========================================================================

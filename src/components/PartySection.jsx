@@ -10,12 +10,13 @@ export default function PartySection({ data, event }) {
   const bgRef = useParallax({ speed: 0.18, scale: 1.22 })
   return (
     <div className="party-bg">
-      <div
-        ref={bgRef}
-        className="party-bg-img"
-        style={{ backgroundImage: `url(${data.photos.partyBg})` }}
-        aria-hidden
-      />
+      <div className="party-bg-clip" aria-hidden>
+        <div
+          ref={bgRef}
+          className="party-bg-img"
+          style={{ backgroundImage: `url(${data.photos.partyBg})` }}
+        />
+      </div>
       <Reception data={data} event={event} />
       <Rsvp data={data} event={event} />
     </div>
