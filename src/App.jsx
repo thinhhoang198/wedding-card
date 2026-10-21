@@ -80,7 +80,7 @@ export default function App() {
           <PartySection data={invitation} event={invitation.events[eventIdx]} />
           <DressCode data={invitation} />
           <Timeline data={invitation} />
-          <Guestbook data={invitation} />
+          {invitation.features.guestbook && <Guestbook data={invitation} />}
           <GiftBox data={invitation} />
           <PhotoBand
             src={invitation.photos.band2.src}

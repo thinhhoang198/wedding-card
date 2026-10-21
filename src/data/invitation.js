@@ -7,6 +7,11 @@ export const invitation = {
   // ---- Cấu hình chung ----------------------------------------------------
   bilingual: false, // true = hiện thêm dòng chữ Hoa ở tiêu đề các mục
   musicSrc: '/music/nhac-nen.mp3', // đặt file nhạc vào public/music/
+  // Công tắc hiện/ẩn các mục chưa dùng tới. Đổi false -> true để mở lại (code giữ nguyên, không mất gì).
+  features: {
+    rsvp: false, // mục "Xác Nhận Tham Dự"
+    guestbook: false, // mục "Sổ Lưu Bút"
+  },
   // Endpoint Google Apps Script để lưu RSVP + lời chúc (xem HUONG-DAN.md).
   // Ưu tiên lấy từ biến môi trường VITE_SHEET_ENDPOINT khi deploy Vercel.
   sheetEndpoint: import.meta.env.VITE_SHEET_ENDPOINT || '',

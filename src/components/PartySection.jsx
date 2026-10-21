@@ -18,7 +18,7 @@ export default function PartySection({ data, event }) {
         />
       </div>
       <Reception data={data} event={event} />
-      <Rsvp data={data} event={event} />
+      {data.features?.rsvp && <Rsvp data={data} event={event} />}
     </div>
   )
 }
