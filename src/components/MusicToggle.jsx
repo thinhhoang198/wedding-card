@@ -1,8 +1,9 @@
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
 
 /**
- * Nhạc nền + nút bật/tắt cố định góc màn.
- * ref được App dùng để gọi .play() ngay khi bấm "Mở thiệp".
+ * Nhạc nền + nút dừng/phát cố định góc phải trên.
+ * ref được App dùng để gọi .play() ngay trong cú bấm chọn Hà Nội / Nha Trang
+ * (trình duyệt chỉ cho phát nhạc khi có thao tác của người dùng).
  */
 const MusicToggle = forwardRef(function MusicToggle({ src, visible }, ref) {
   const audioRef = useRef(null)
@@ -31,6 +32,8 @@ const MusicToggle = forwardRef(function MusicToggle({ src, visible }, ref) {
     else a.pause()
   }
 
+  const label = playing ? 'Dừng nhạc' : 'Phát nhạc'
+
   return (
     <>
       <audio ref={audioRef} src={src} loop preload="auto" />
@@ -38,10 +41,20 @@ const MusicToggle = forwardRef(function MusicToggle({ src, visible }, ref) {
         <button
           className={`music-btn ${playing ? 'spin' : ''}`}
           onClick={toggle}
-          aria-label={playing ? 'Tắt nhạc' : 'Bật nhạc'}
-          title={playing ? 'Tắt nhạc' : 'Bật nhạc'}
+          aria-label={label}
+          aria-pressed={playing}
+          title={label}
         >
-          {playing ? '♫' : '♪'}
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            {playing ? (
+              <>
+                <rect x="6" y="5" width="4" height="14" rx="1" />
+                <rect x="14" y="5" width="4" height="14" rx="1" />
+              </>
+            ) : (
+              <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" />
+            )}
+          </svg>
         </button>
       )}
 
@@ -52,11 +65,11 @@ const MusicToggle = forwardRef(function MusicToggle({ src, visible }, ref) {
           right: max(16px, calc(50% - var(--card-max) / 2 + 16px));
           z-index: 20;
           width: 42px; height: 42px;
+          display: flex; align-items: center; justify-content: center;
           border-radius: 50%;
           border: 1px solid var(--c-accent);
           background: var(--c-primary);
           color: var(--c-cream);
-          font-size: 18px;
           cursor: pointer;
           box-shadow: 0 4px 14px rgba(0,0,0,0.3);
         }
