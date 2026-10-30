@@ -1,11 +1,13 @@
 // Các hàm tiện ích nhỏ, không phụ thuộc thư viện ngoài.
 
+/** Link Google Maps chỉ đường tới địa điểm (dùng làm href của thẻ <a>). */
+export function buildMapUrl(query) {
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query)
+}
+
 /** Mở Google Maps tới địa điểm tiệc cưới. */
 export function openMap(query) {
-  const url =
-    'https://www.google.com/maps/search/?api=1&query=' +
-    encodeURIComponent(query)
-  window.open(url, '_blank', 'noopener')
+  window.open(buildMapUrl(query), '_blank', 'noopener')
 }
 
 /** Định dạng thời gian theo chuẩn iCalendar: 20260103T180000. */

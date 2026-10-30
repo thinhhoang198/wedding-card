@@ -38,6 +38,7 @@ export const invitation = {
     band1: {
       src: '/couple/band-1.jpg', // Nha Trang
       caption: 'Chuyện của chúng mình bắt đầu…',
+      captionPosition: 'top', // cặp đôi nằm thấp trong khung nên đặt chữ lên bầu trời
     },
     band2: { src: '/couple/band-hanoi-2.jpg', caption: 'Và mãi mãi về sau' }, // Hà Nội
     thankYou: '/couple/cam-on.jpg', // ảnh cuối, trước lời cảm ơn (Nha Trang)
@@ -89,6 +90,7 @@ export const invitation = {
       lunar: 'Tức ngày 14 tháng 10 năm Bính Ngọ',
       ceremony: {
         place: 'Tân Gia Nhà Gái',
+        timelineLabel: 'Hôn lễ tại tân gia', // tên mốc hiện trong Lịch Trình
         time: '15:00',
         weekday: 'Chủ Nhật',
         day: '22',
@@ -199,7 +201,7 @@ export const invitation = {
 export const labels = {
   saveTheDate: { vi: 'Save The Date' },
   theWeddingOf: { vi: 'The Wedding of' },
-  weddingInfo: { vi: 'Thông Tin Lễ Cưới' },
+  weddingInfo: { vi: 'Hai Bên Gia Đình' },
   announce: { vi: 'Trân Trọng Báo Tin' },
   ceremony: { vi: 'Lễ Thành Hôn' },
   couple: { vi: 'Đôi Uyên Ương' }, // tiêu đề thay thế khi địa điểm không có Hôn lễ (Hà Nội)

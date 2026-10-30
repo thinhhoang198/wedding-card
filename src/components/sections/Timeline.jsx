@@ -74,7 +74,7 @@ function pickIcon(label = '') {
   if (s.includes('chụp ảnh') || s.includes('chụp hình')) return ICONS.camera
   if (s.includes('đón khách') || s.includes('chào đón') || s.includes('tiếp khách')) return ICONS.guests
   if (s.includes('khai tiệc') || s.includes('khai mạc') || s.includes('bắt đầu')) return ICONS.bell
-  if (s.includes('nghi thức') || s.includes('trao nhẫn') || s.includes('thề') || s.includes('làm lễ')) return ICONS.rings
+  if (s.includes('hôn lễ') || s.includes('nghi thức') || s.includes('trao nhẫn') || s.includes('thề') || s.includes('làm lễ')) return ICONS.rings
   if (s.includes('cắt bánh') || s.includes('nâng ly') || s.includes('champagne') || s.includes('khai rượu')) return ICONS.cake
   if (s.includes('kết thúc') || s.includes('tan tiệc') || s.includes('chia tay') || s.includes('bế mạc')) return ICONS.moon
   return ICONS.heart
@@ -85,7 +85,10 @@ function pickIcon(label = '') {
 const TL_COLORS = ['var(--c-primary)', '#a67c1f', 'var(--c-primary-soft)', 'var(--c-ink-soft)', 'var(--c-accent)']
 
 /** Lịch trình ngày cưới: các mốc giờ — dọc trên mobile, dàn ngang trên desktop. */
-export default function Timeline({ data }) {
+export default function Timeline({ data, event }) {
+  // Địa điểm nào có Hôn lễ tại gia (hiện: Nha Trang) thì mốc đó đứng đầu lịch trình của nơi đó.
+  const cer = event?.ceremony
+  const items = cer ? [{ time: cer.time, label: cer.timelineLabel || 'Hôn lễ' }, ...data.timeline] : data.timeline
   return (
     <section className="section">
       <Reveal>
@@ -94,7 +97,7 @@ export default function Timeline({ data }) {
 
       <Reveal className="tl" variant="left">
         <div className="tl-track">
-          {data.timeline.map((item, i) => {
+          {items.map((item, i) => {
             const Icon = pickIcon(item.label)
             const color = TL_COLORS[i % TL_COLORS.length]
             return (

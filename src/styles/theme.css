@@ -3,7 +3,8 @@
    ========================================================================== */
 :root {
   /* Bảng màu chủ đạo: TRẮNG SÁNG + VÀNG ĐỒNG (White & Gold) */
-  --c-primary: #94723a; /* vàng đồng cổ điển — nút/tên/tiêu đề/tim */
+  --c-primary: #876731; /* vàng đồng cổ điển — nút/tên/tiêu đề/tim (≥4.5:1 trên nền kem, chữ trắng trên nút 5.2:1) */
+  --c-label: #80622c; /* vàng đồng đậm — CHỮ NHỎ (nhãn, thứ trong lịch); --c-accent chỉ dùng cho viền/vạch/hoa văn */
   --c-primary-soft: #bfa168; /* vàng champagne dịu */
   --c-accent: #cbb281; /* vàng kim satin — viền/nhãn/vạch/hoa văn */
   --c-cream: #ffffff; /* nền thẻ — trắng tinh */
@@ -65,6 +66,38 @@ body {
 img {
   max-width: 100%;
   display: block;
+}
+
+/* Xuống dòng gọn: tiêu đề/tên cân hai dòng, đoạn văn không để chữ lẻ cuối dòng */
+h1, h2, h3, .rec-venue, .when-place-name {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+/* Viền tiêu điểm khi dùng bàn phím (không hiện khi bấm chuột/chạm) */
+:focus-visible {
+  outline: 3px solid var(--c-primary);
+  outline-offset: 3px;
+}
+/* Trên nền tối của popup/lightbox, viền màu kem để thấy rõ */
+.lb :focus-visible,
+.gm :focus-visible {
+  outline-color: #fff;
+}
+
+/* Chỉ cho trình đọc màn hình */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Thân thiệp: dải canh giữa trên nền sáng ---------------------------------- */

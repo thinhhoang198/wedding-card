@@ -71,19 +71,22 @@ export default function App() {
           <Hero data={invitation} eventIdx={eventIdx} />
           <CoupleInfo data={invitation} />
           <Ceremony data={invitation} eventIdx={eventIdx} />
+          {/* Ai · khi nào · ở đâu đi trước; ảnh album đến sau */}
+          <PartySection data={invitation} event={invitation.events[eventIdx]} />
           <PhotoBand
             src={invitation.photos.band1.src}
+            alt={`Ảnh cưới của ${invitation.groom.shortName} và ${invitation.bride.shortName}`}
             caption={invitation.photos.band1.caption}
+            captionPosition={invitation.photos.band1.captionPosition}
           />
           <Gallery data={invitation} />
-          {/* Tiệc cưới + RSVP — theo địa điểm khách đã chọn ở cover */}
-          <PartySection data={invitation} event={invitation.events[eventIdx]} />
           <DressCode data={invitation} />
-          <Timeline data={invitation} />
+          <Timeline data={invitation} event={invitation.events[eventIdx]} />
           {invitation.features.guestbook && <Guestbook data={invitation} />}
           <GiftBox data={invitation} />
           <PhotoBand
             src={invitation.photos.band2.src}
+            alt={`Ảnh cưới của ${invitation.groom.shortName} và ${invitation.bride.shortName}`}
             caption={invitation.photos.band2.caption}
           />
           <ThankYou data={invitation} />

@@ -71,7 +71,7 @@ export default function CoupleInfo({ data }) {
         .winfo-side { text-align: center; }
         .winfo-side h3 {
           font-family: var(--f-body); letter-spacing: 0.2em;
-          color: var(--c-accent); font-size: 0.85rem; margin: 0 0 12px;
+          color: var(--c-label); font-size: 0.85rem; margin: 0 0 12px;
         }
         .winfo-side p { margin: 5px 0; font-family: var(--f-serif); font-size: 1.18rem; font-weight: 500; color: var(--c-ink); line-height: 1.4; }
         .winfo-addr { color: var(--c-ink-soft) !important; font-size: 0.92rem !important; margin-top: 8px !important; }

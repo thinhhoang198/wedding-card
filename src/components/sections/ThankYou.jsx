@@ -10,7 +10,7 @@ export default function ThankYou({ data }) {
       <Reveal variant="zoom">
         <div className="ty-photo-frame">
           <div className="ty-photo pf">
-            <img ref={photoRef} src={data.photos.thankYou} alt="" onError={(e) => { e.currentTarget.style.opacity = 0 }} />
+            <img ref={photoRef} src={data.photos.thankYou} alt={`${groom.shortName} và ${bride.shortName}`} onError={(e) => { e.currentTarget.style.opacity = 0 }} />
             <span className="pf-hint">Ảnh cưới</span>
           </div>
           {/* Hoa văn — nhành lá nhỏ, rủ xuống góc dưới trái khung ảnh */}

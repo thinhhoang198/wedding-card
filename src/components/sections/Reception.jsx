@@ -1,6 +1,6 @@
 import { Reveal, SectionTitle } from '../common'
 import { labels } from '../../data/invitation'
-import { buildGoogleCalendarUrl } from '../../utils/helpers'
+import { buildGoogleCalendarUrl, buildMapUrl } from '../../utils/helpers'
 
 /** Lịch tháng tô đậm ngày cưới. */
 function MiniCalendar({ year, month, day }) {
@@ -50,6 +50,7 @@ export default function Reception({ data, event }) {
 
       <Reveal className="panel rec" variant="left">
         <p className="rec-venue">{r.venue}</p>
+        <p className="rec-address">{r.address}</p>
         <p className="rec-lead">Tiệc cưới sẽ diễn ra vào lúc</p>
         <div className="when-date">
           <div className="wd-col"><span className="wd-top">{r.weekday}</span><strong>{r.startTime}</strong></div>
@@ -60,6 +61,19 @@ export default function Reception({ data, event }) {
         </div>
         <p className="lunar">({r.lunar})</p>
 
+        <a
+          className="btn btn-outline rec-map"
+          href={buildMapUrl(r.mapQuery)}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Chỉ đường tới ${r.venue}`}
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z" />
+            <circle cx="12" cy="9.5" r="2.6" />
+          </svg>
+          Chỉ đường
+        </a>
 
         {/* Hoa văn góc — nhành hồng góc trên trái, lá vàng góc dưới phải */}
         <img className="deco deco-rec-tl" src="/decor/decor-clean.png" alt="" aria-hidden="true" />
@@ -86,7 +100,9 @@ export default function Reception({ data, event }) {
           width: clamp(64px, 14vw, 116px);
           bottom: clamp(-20px, -4vw, -8px); right: clamp(-18px, -4vw, -6px);
         }
-        .rec-venue { font-family: var(--f-serif); color: var(--c-primary); font-size: 1.3rem; margin: 0 0 12px; }
+        .rec-venue { font-family: var(--f-serif); color: var(--c-primary); font-size: 1.3rem; margin: 0 0 4px; text-wrap: balance; }
+        .rec-address { color: var(--c-ink-soft); font-size: 0.95rem; line-height: 1.5; margin: 0 auto 16px; max-width: 30ch; text-wrap: balance; }
+        .rec-map { display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-top: 20px; min-height: 44px; }
         .rec-lead { color: var(--c-ink-soft); margin: 0 0 14px; }
         .rec-times { display: flex; justify-content: center; gap: 28px; margin-top: 16px; font-family: var(--f-serif); color: var(--c-ink); }
         .rec-times b { color: var(--c-primary); }
@@ -98,8 +114,8 @@ export default function Reception({ data, event }) {
           box-shadow: 0 12px 30px rgba(74, 58, 40, 0.1);
         }
         .deco-cal {
-          width: clamp(50px, 11vw, 84px);
-          top: clamp(-18px, -4vw, -8px); right: clamp(-16px, -3.5vw, -6px);
+          width: clamp(44px, 9vw, 70px);
+          top: clamp(-34px, -6vw, -20px); right: clamp(-26px, -5vw, -12px);
         }
         .cal { max-width: 100%; margin: 0; }
         .cal-btn { display: inline-block; margin-top: 22px; }
@@ -109,12 +125,12 @@ export default function Reception({ data, event }) {
           border-bottom: 1px solid rgba(201, 161, 90, 0.3);
         }
         .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-        .cal-h { text-align: center; font-size: 0.72rem; color: var(--c-accent); padding: 4px 0; font-weight: 600; }
+        .cal-h { text-align: center; font-size: 0.75rem; color: var(--c-label); padding: 4px 0; font-weight: 600; }
         .cal-d { text-align: center; padding: 7px 0; font-size: 0.9rem; color: var(--c-ink); border-radius: 50%; }
         /* Ngày cưới: hình trái tim thay vì khoanh tròn, số nằm trên nền tim */
         .cal-d.is-day {
           background:
-            url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2030'%3E%3Cpath%20d='M16%2028.8%20C7%2021.2%202%2015.6%202%209.9%20C2%205.5%205.4%202%209.4%202%20C12%202%2014.4%203.6%2016%205.9%20C17.6%203.6%2020%202%2022.6%202%20C26.6%202%2030%205.5%2030%209.9%20C30%2015.6%2025%2021.2%2016%2028.8%20Z'%20fill='%23a67c1f'/%3E%3C/svg%3E")
+            url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2030'%3E%3Cpath%20d='M16%2028.8%20C7%2021.2%202%2015.6%202%209.9%20C2%205.5%205.4%202%209.4%202%20C12%202%2014.4%203.6%2016%205.9%20C17.6%203.6%2020%202%2022.6%202%20C26.6%202%2030%205.5%2030%209.9%20C30%2015.6%2025%2021.2%2016%2028.8%20Z'%20fill='%23876731'/%3E%3C/svg%3E")
             no-repeat center 56% / 34px 32px;
           color: var(--c-cream);
           font-weight: 700;

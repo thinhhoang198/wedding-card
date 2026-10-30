@@ -10,6 +10,7 @@ import { labels } from '../../data/invitation'
 export default function Gallery({ data }) {
   const photos = data.gallery || []
   const n = photos.length
+  const couple = `${data.groom.shortName} và ${data.bride.shortName}`
   const [index, setIndex] = useState(0)
   const [light, setLight] = useState(false)
   const touch = useRef(null)
@@ -33,21 +34,47 @@ export default function Gallery({ data }) {
     touch.current = null
   }
 
-  // Điều hướng lightbox bằng bàn phím + khoá cuộn nền
+  // Lightbox: bàn phím (Esc, ←, →, Tab giữ trong popup), khoá cuộn nền, tiêu điểm vào popup rồi trả lại khi đóng
+  const lbRef = useRef(null)
   useEffect(() => {
     if (!light) return
+    const opener = document.activeElement
+    lbRef.current?.querySelector('.lb-close')?.focus()
     const onKey = (e) => {
       if (e.key === 'Escape') setLight(false)
       if (e.key === 'ArrowLeft') go(-1)
       if (e.key === 'ArrowRight') go(1)
+      if (e.key === 'Tab' && lbRef.current) {
+        const f = lbRef.current.querySelectorAll('button')
+        if (!f.length) return
+        const first = f[0], last = f[f.length - 1]
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus() }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus() }
+      }
     }
     window.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
     return () => {
       window.removeEventListener('keydown', onKey)
       document.body.style.overflow = ''
+      opener?.focus?.()
     }
   }, [light, n])
+
+  // Mũi tên ←/→ khi tiêu điểm đang ở trong carousel; ảnh giữa đổi thì tiêu điểm đi theo
+  // (nếu không, ảnh đang giữ tiêu điểm thành ảnh bên cạnh và bàn phím bị "rơi" khỏi carousel).
+  const refocusCenter = useRef(false)
+  const onCarouselKey = (e) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+    e.preventDefault()
+    refocusCenter.current = true
+    go(e.key === 'ArrowLeft' ? -1 : 1)
+  }
+  useEffect(() => {
+    if (!refocusCenter.current) return
+    refocusCenter.current = false
+    document.querySelector('.cf-item.is-center')?.focus()
+  }, [index])
 
   if (!n) return null
 
@@ -58,7 +85,16 @@ export default function Gallery({ data }) {
       </Reveal>
 
       <Reveal variant="zoom">
-        <div className="cf" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+        <div
+          className="cf"
+          role="region"
+          aria-roledescription="carousel"
+          aria-label="Album ảnh cưới"
+          onKeyDown={onCarouselKey}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
+          <p className="sr-only" aria-live="polite">Ảnh {index + 1} trên {n}</p>
           <div className="cf-stage">
             {photos.map((src, i) => {
               const d = rel(i)
@@ -76,8 +112,18 @@ export default function Gallery({ data }) {
                     pointerEvents: hidden ? 'none' : 'auto',
                   }}
                   onClick={() => (isCenter ? setLight(true) : setIndex(i))}
+                  {...(isCenter
+                    ? {
+                        role: 'button',
+                        tabIndex: 0,
+                        'aria-label': `Phóng to ảnh ${i + 1} trên ${n}`,
+                        onKeyDown: (e) => {
+                          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setLight(true) }
+                        },
+                      }
+                    : { 'aria-hidden': true })}
                 >
-                  <img src={src} alt={`Ảnh cưới ${i + 1}`} loading="lazy"
+                  <img src={src} alt={`Ảnh cưới của ${couple}, ảnh ${i + 1}/${n}`} loading="lazy"
                        onError={(e) => { e.currentTarget.style.opacity = 0 }} />
                 </div>
               )
@@ -91,15 +137,24 @@ export default function Gallery({ data }) {
 
       <div className="cf-dots">
         {photos.map((_, i) => (
-          <button key={i} className={`dot ${i === index ? 'on' : ''}`} onClick={() => setIndex(i)} aria-label={`Ảnh ${i + 1}`} />
+          <button key={i} className={`dot ${i === index ? 'on' : ''}`} onClick={() => setIndex(i)} aria-label={`Ảnh ${i + 1}`} aria-current={i === index ? 'true' : undefined} />
         ))}
       </div>
 
       {light && createPortal(
-        <div className="lb" onClick={() => setLight(false)} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+        <div
+          className="lb"
+          ref={lbRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Xem ảnh phóng to"
+          onClick={() => setLight(false)}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
           <button className="lb-close" onClick={() => setLight(false)} aria-label="Đóng">✕</button>
           <button className="lb-nav lb-prev" onClick={(e) => { e.stopPropagation(); go(-1) }} aria-label="Ảnh trước">‹</button>
-          <img className="lb-img" src={photos[index]} alt="" onClick={(e) => e.stopPropagation()} />
+          <img className="lb-img" src={photos[index]} alt={`Ảnh cưới của ${couple}, ảnh ${index + 1}/${n}`} onClick={(e) => e.stopPropagation()} />
           <button className="lb-nav lb-next" onClick={(e) => { e.stopPropagation(); go(1) }} aria-label="Ảnh sau">›</button>
           <span className="lb-count">{index + 1} / {n}</span>
         </div>,
@@ -142,9 +197,12 @@ export default function Gallery({ data }) {
 
         .cf-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
         .cf-dots .dot {
+          position: relative;
           width: 8px; height: 8px; border-radius: 50%; border: none; cursor: pointer;
-          background: rgba(201,161,90,0.45); transition: all 0.25s;
+          background: rgba(135,103,49,0.4); transition: all 0.25s;
         }
+        /* vùng chạm lớn hơn hình chấm (cao 44px) mà không đổi giao diện */
+        .cf-dots .dot::after { content: ''; position: absolute; inset: -18px -3px; }
         .cf-dots .dot.on { background: var(--c-primary); width: 22px; border-radius: 4px; }
 
         .lb {

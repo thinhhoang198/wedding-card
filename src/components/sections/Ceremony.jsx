@@ -121,7 +121,7 @@ export default function Ceremony({ data, eventIdx }) {
         .couple .ptype {
           display: block; font-family: var(--f-body);
           letter-spacing: 0.2em; text-transform: uppercase;
-          color: var(--c-accent); font-size: 0.75rem; font-weight: 500;
+          color: var(--c-label); font-size: 0.75rem; font-weight: 500;
           margin: 0 0 3px;
         }
         .couple h3 {
@@ -129,7 +129,7 @@ export default function Ceremony({ data, eventIdx }) {
           line-height: 1.2; color: var(--c-primary); margin: 0; font-weight: 500;
         }
         .couple .amp {
-          font-family: var(--f-serif); font-style: italic; color: var(--c-accent);
+          font-family: var(--f-serif); font-style: italic; color: var(--c-label);
           font-size: 1.6rem; flex: 0 0 auto;
           margin-top: clamp(26px, 10vw, 85px); /* canh ngang tâm khung ảnh */
         }
@@ -137,7 +137,7 @@ export default function Ceremony({ data, eventIdx }) {
         .when-place-name { font-family: var(--f-serif); font-size: 1.35rem; color: var(--c-primary); margin: 6px 0 18px; }
         .when-date { display: flex; align-items: center; justify-content: center; gap: 10px; }
         .wd-col { display: flex; flex-direction: column; min-width: 62px; }
-        .wd-col .wd-top { font-size: 0.72rem; letter-spacing: 0.12em; color: var(--c-ink-soft); text-transform: uppercase; }
+        .wd-col .wd-top { font-size: 0.75rem; letter-spacing: 0.12em; color: var(--c-ink-soft); text-transform: uppercase; }
         .wd-col strong { font-family: var(--f-serif); font-size: 1.9rem; color: var(--c-primary); }
         .wd-sep { width: 1px; height: 40px; background: var(--c-accent); opacity: 0.5; }
         .lunar { color: var(--c-ink-soft); font-style: italic; font-size: 0.85rem; margin: 14px 0 0; }

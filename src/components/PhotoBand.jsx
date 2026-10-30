@@ -6,15 +6,15 @@ import { useParallax } from '../hooks/useParallax'
  * Dùng làm "điểm nhấn triển lãm" giữa các mục. Chưa có ảnh → khung placeholder.
  * Ảnh trôi parallax nhẹ theo cuộn trang để tạo chiều sâu.
  */
-export default function PhotoBand({ src, caption }) {
+export default function PhotoBand({ src, caption, alt = '', captionPosition = 'bottom' }) {
   const [ref, shown] = useReveal()
   const photoRef = useParallax({ speed: 0.3, scale: 1.32 })
   const hideImg = (e) => (e.currentTarget.style.opacity = 0)
 
   return (
     <section className="band-sec">
-      <div ref={ref} className={`band pf ${shown ? 'is-in' : ''}`}>
-        <img ref={photoRef} src={src} alt="" onError={hideImg} />
+      <div ref={ref} className={`band pf ${captionPosition === 'top' ? 'cap-top' : ''} ${shown ? 'is-in' : ''}`}>
+        <img ref={photoRef} src={src} alt={alt} onError={hideImg} />
         <span className="pf-hint">Ảnh cưới</span>
         <div className="band-overlay" />
         {caption ? <p className="band-caption">{caption}</p> : null}
@@ -43,6 +43,13 @@ export default function PhotoBand({ src, caption }) {
           transition: opacity 0.9s ease 0.2s, transform 0.9s cubic-bezier(0.33,1,0.68,1) 0.2s;
         }
         .band.is-in .band-caption { opacity: 1; transform: none; }
+
+        /* Chữ ở phía trên khi cặp đôi nằm thấp trong khung — tối nhẹ phía trên để chữ trắng vẫn đọc rõ */
+        .band.cap-top .band-overlay {
+          background: linear-gradient(to bottom, rgba(42, 30, 16,0.6) 0%, rgba(42, 30, 16,0.18) 38%, rgba(42, 30, 16,0.05) 62%, rgba(42, 30, 16,0.1) 100%);
+        }
+        .band.cap-top .band-caption { bottom: auto; top: clamp(16px, 4vw, 30px); transform: translateY(-14px); }
+        .band.cap-top.is-in .band-caption { transform: none; }
       `}</style>
     </section>
   )

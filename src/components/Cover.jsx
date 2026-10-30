@@ -166,11 +166,11 @@ export default function Cover({ data, onOpen, closing }) {
         }
         .cover-sub {
           font-family: var(--f-body); letter-spacing: 0.35em; text-transform: uppercase;
-          font-size: 0.68rem; color: var(--c-accent); margin: 0 0 6px;
+          font-size: 0.75rem; color: var(--c-label); margin: 0 0 6px;
         }
         .cover-names { font-family: var(--f-script); color: var(--c-primary); margin: 0; line-height: 1.08; font-weight: 700; }
         .cover-names span { display: block; font-size: clamp(1.75rem, 6vw, 2.4rem); }
-        .cover-names em { font-family: var(--f-serif); font-style: italic; font-size: 0.95rem; color: var(--c-accent); display: block; margin: 1px 0; }
+        .cover-names em { font-family: var(--f-serif); font-style: italic; font-size: 0.95rem; color: var(--c-label); display: block; margin: 1px 0; }
         .cover-invite { font-family: var(--f-serif); color: var(--c-ink); font-size: 1.2rem; margin: 2px 0 6px; }
         .cover-choose-note {
           font-family: var(--f-body); color: var(--c-ink-soft);
@@ -191,7 +191,7 @@ export default function Cover({ data, onOpen, closing }) {
         .loc-btn:active { transform: translateY(0) scale(0.98); }
         .loc-btn:disabled { cursor: default; }
         .loc-name { font-family: var(--f-serif); font-size: 1.25rem; font-weight: 600; line-height: 1.1; }
-        .loc-date { font-family: var(--f-body); font-size: 0.8rem; letter-spacing: 0.06em; opacity: 0.82; }
+        .loc-date { font-family: var(--f-body); font-size: 0.8rem; letter-spacing: 0.06em; }
         .loc-btn .shine {
           position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
           background: linear-gradient(100deg, transparent, rgba(255,255,255,0.45), transparent);

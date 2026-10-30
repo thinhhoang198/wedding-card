@@ -36,7 +36,7 @@ const MusicToggle = forwardRef(function MusicToggle({ src, visible }, ref) {
 
   return (
     <>
-      <audio ref={audioRef} src={src} loop preload="auto" />
+      <audio ref={audioRef} src={src} loop preload="none" />
       {visible && (
         <button
           className={`music-btn ${playing ? 'spin' : ''}`}
@@ -64,7 +64,7 @@ const MusicToggle = forwardRef(function MusicToggle({ src, visible }, ref) {
           top: 16px;
           right: max(16px, calc(50% - var(--card-max) / 2 + 16px));
           z-index: 20;
-          width: 42px; height: 42px;
+          width: 44px; height: 44px;
           display: flex; align-items: center; justify-content: center;
           border-radius: 50%;
           border: 1px solid var(--c-accent);

@@ -1,7 +1,7 @@
 import { Reveal } from '../common';
 import { useParallax } from '../../hooks/useParallax';
 
-/** Hero: tên đôi uyên ương cỡ lớn + ngày cưới (mở đầu nội dung). */
+/** Hero: tên đôi uyên ương cỡ lớn + ngày cưới + nơi tiệc (địa điểm chọn ở màn cover). */
 export default function Hero({ data, eventIdx }) {
   const { groom, bride, events } = data;
   const date = events[eventIdx];
@@ -28,7 +28,7 @@ export default function Hero({ data, eventIdx }) {
           <img
             ref={photoRef}
             src={data.photos.hero}
-            alt=""
+            alt={`${groom.shortName} và ${bride.shortName}`}
             onError={(e) => {
               e.currentTarget.style.opacity = 0;
             }}
@@ -99,7 +99,7 @@ export default function Hero({ data, eventIdx }) {
 
         .hero-sub {
           letter-spacing: 0.4em; text-transform: uppercase;
-          font-size: 0.72rem; color: var(--c-accent); margin: 0 0 16px;
+          font-size: 0.75rem; color: var(--c-label); margin: 0 0 16px;
           opacity: 0;
           animation: heroDropIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 1.05s both;
         }
@@ -109,9 +109,9 @@ export default function Hero({ data, eventIdx }) {
         }
         .hero-names span { display: block; font-size: clamp(3rem, 14vw, 4.6rem); }
         .hero-names em {
-          font-family: var(--f-serif); font-style: italic; color: var(--c-accent); font-size: 1.4rem;
+          font-family: var(--f-serif); font-style: italic; color: var(--c-label); font-size: 1.4rem;
           opacity: 0;
-          animation: heroPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.85s both;
+          animation: heroPop 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.85s both;
         }
 
         /* Tên bay vào từ 2 bên, canh đúng lúc nền Cover bắt đầu mờ đi */
@@ -125,7 +125,7 @@ export default function Hero({ data, eventIdx }) {
 
         .hero .divider {
           opacity: 0;
-          animation: heroPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 2s both;
+          animation: heroPop 0.7s cubic-bezier(0.22, 1, 0.36, 1) 2s both;
         }
         @keyframes heroPop {
           from { opacity: 0; transform: scale(0.4); }
@@ -133,9 +133,15 @@ export default function Hero({ data, eventIdx }) {
         }
 
         .hero-date {
-          font-family: var(--f-serif); color: var(--c-ink-soft); font-size: 1.2rem;
+          font-family: var(--f-serif); color: var(--c-ink); font-size: 1.35rem; font-weight: 500;
+          margin: 0 0 16px;
           opacity: 0;
           animation: heroDropIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 2.15s both;
+        }
+        .hero-place {
+          margin: 0; font-size: 0.95rem; color: var(--c-ink-soft); letter-spacing: 0.04em;
+          opacity: 0;
+          animation: heroDropIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) 2.3s both;
         }
         @keyframes heroDropIn {
           from { opacity: 0; transform: translateY(-14px); }
@@ -144,7 +150,7 @@ export default function Hero({ data, eventIdx }) {
 
         @media (prefers-reduced-motion: reduce) {
           .hero-names .n-groom, .hero-names .n-bride,
-          .hero-sub, .hero-names em, .hero .divider, .hero-date, .hero-photo {
+          .hero-sub, .hero-names em, .hero .divider, .hero-date, .hero-place, .hero-photo {
             opacity: 1; animation: none; transform: none;
           }
           .hero-photo::after { display: none; }
